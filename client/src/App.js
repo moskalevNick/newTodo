@@ -11,6 +11,15 @@ function App() {
         setTodos(data)
       })
   }, [])
+  
+  function addTodo() {
+    fetch (uri, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({data: inputValue})
+    })
+  }
+
   return (
     <div className="App">
       <h1>do it</h1>
@@ -21,7 +30,7 @@ function App() {
           setInputValue(e.target.value)
         }}
       ></input>
-      <button>Add</button>
+      <button onClick={addTodo}>Add</button>
       {todos.map((element) => (
         <div key={element.id}>
           <input type="checkbox"></input>
