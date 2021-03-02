@@ -11,13 +11,24 @@ function App() {
         setTodos(data)
       })
   }, [])
-  
-  function addTodo() {
-    fetch (uri, {
+
+  async function addTodo() {
+    await fetch (uri, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({data: inputValue})
+      body: JSON.stringify({ id: Date.now(), todo: inputValue, important: false, checked: false })
+    }).then((response) => response.json())
+    .then((data) => {
+      setTodos(data)
     })
+    setInputValue("")
+  }
+  
+  const changeTodoChecked = (id) => {
+    fetch (`${uri}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      })
   }
 
   return (
@@ -33,7 +44,11 @@ function App() {
       <button onClick={addTodo}>Add</button>
       {todos.map((element) => (
         <div key={element.id}>
-          <input type="checkbox"></input>
+          <input type="checkbox" 
+            checked={element.checked} 
+            onChange = {() => {
+            changeTodoChecked(element.id)
+          }}></input>
           {element.todo}
           <button>delete</button>
         </div>
