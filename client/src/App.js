@@ -4,13 +4,7 @@ const uri = "http://localhost:7000/"
 function App() {
   const [todos, setTodos] = useState([])
   const [inputValue, setInputValue] = useState("")
-  useEffect(() => {
-    fetch(uri)
-      .then((response) => response.json())
-      .then((data) => {
-        setTodos(data)
-      })
-  }, [])
+  
 
   async function addTodo() {
     await fetch (uri, {
@@ -28,8 +22,24 @@ function App() {
     fetch (`${uri}/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      })
+      body: JSON.stringify({ id: Date.now(), todo: "test", important: false, checked: false })
+    })
   }
+
+  /* const changeTodoImportant = (id) => {
+    fetch (`${uri}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' }
+    })
+  }
+ */
+  useEffect(() => {
+    fetch(uri)
+      .then((response) => response.json())
+      .then((data) => {
+        setTodos(data)
+      })
+  }, [])
 
   return (
     <div className="App">
@@ -43,14 +53,20 @@ function App() {
       ></input>
       <button onClick={addTodo}>Add</button>
       {todos.map((element) => (
-        <div key={element.id}>
+        <div 
+        key={element.id} 
+        className={element.important?"important":""}
+        onClick = {() => {
+          //changeTodoImportant(element.id)
+        }}
+        >
           <input type="checkbox" 
             checked={element.checked} 
             onChange = {() => {
             changeTodoChecked(element.id)
           }}></input>
           {element.todo}
-          <button>delete</button>
+          <button /*onClick={removeTodo}*/>delete</button>
         </div>
       ))}
     </div>
