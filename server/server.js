@@ -22,9 +22,6 @@ const schema = new Schema({
 
 const Todo = model("Todo", schema)
   
-const t = new Todo(todos[1]);
-//t.save()
-
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -33,18 +30,21 @@ app.post("/", (req, res) => {
   res.json(todos)
 })
 
-app.put("//:id", (req, res) => {
+app.put("/:id", (req, res) => {
   todos.forEach(e => {
     if(e.id == req.params.id){
       e.checked = !e.checked
-      console.log('check');
     }  
   })
+  res.json(todos)
 })
 
 app.get("/", (req, res) => {
   res.json(todos)
 })
+
+//const t = new Todo(todos[1]);
+//t.save() 
 
 app.listen(7000, () => {
   console.log('server start at 7000')
