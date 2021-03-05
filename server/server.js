@@ -3,17 +3,11 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const router = require("router")
-const bodyParser = require("body-parser");
-const uri ="mongodb+srv://keks:22101995@cluster0.o9t1k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const bodyParser = require("body-parser")
+const uri = "mongodb+srv://keks:22101995@cluster0.o9t1k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 const { Schema, model } = require("mongoose")
 
-const todos = [
-  { id: 123, todo: 111111111111111, important: true, checked: false },
-  { id: 1234, todo: 2222222222222222, important: false, checked: false },
-  { id: 12345, todo: 333333333333333333, important: true, checked: true },
-]
-  
 const schema = new Schema({
   todo: { type: String, required: true },
   important: { type: Boolean, required: true },
@@ -21,32 +15,49 @@ const schema = new Schema({
 })
 
 const Todo = model("Todo", schema)
-  
+
 app.use(cors())
 app.use(bodyParser.json())
 
-app.post("/", (req, res) => {
-  todos.push(req.body)
+app.get("/", async(req, res) => {
+  const todos = await Todo.find({});
+  res.json(todos);  
+})
+
+app.put("/:id", async (req, res) => {
+  const todo = await Todo.findById(req.params.id)
+  if (req.body.type === "checked") {
+    await Todo.findByIdAndUpdate(req.params.id, {
+      $set: {checked: !todo.checked}
+    })
+  }
+  if (req.body.type === "important") {
+    await Todo.findByIdAndUpdate (req.params.id, {
+      $set: {important: !todo.important}
+    })
+  }
+  const todos = await Todo.find({});
   res.json(todos)
 })
 
-app.put("/:id", (req, res) => {
-  todos.forEach(e => {
-    if(e.id == req.params.id){
-      e.checked = !e.checked
-    }  
-  })
+app.post("/", async (req, res) => {
+  const newDB = new Todo(req.body);
+  await newDB.save()
+  const todos = await Todo.find({});
   res.json(todos)
 })
 
-app.get("/", (req, res) => {
+app.delete("/:id", async (req, res) => {
+  await Todo.findByIdAndRemove(req.params.id)
+  const todos = await Todo.find({});
   res.json(todos)
-})
-
-//const t = new Todo(todos[1]);
-//t.save() 
+}) 
 
 app.listen(7000, () => {
-  console.log('server start at 7000')
-  mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+    mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
+    console.log("server start at 7000")
+  } catch (e) {
+    console.log(e)
+  }
 })

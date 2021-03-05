@@ -4,34 +4,45 @@ const uri = "http://localhost:7000"
 function App() {
   const [todos, setTodos] = useState([])
   const [inputValue, setInputValue] = useState("")
-  
 
-async function addTodo() {
-  const t = await fetch (uri, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id: Date.now(), todo: inputValue, important: false, checked: false })
-  })
-  const response = await t.json()
-  setTodos(response)
-  setInputValue("") 
-}
-  
-  const changeTodoChecked = async (id) => {
-    const response = await fetch (`${uri}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+  async function addTodo() {
+    const t = await fetch(uri, {
+      method: "POST",
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ todo: inputValue, important: false, checked: false }),
+    })
+    const response = await t.json()
+    setTodos(response)
+    setInputValue("")
+  }
+
+  const changeTodo = async (id, type) => {
+    const response = await fetch(`${uri}/${id}`, {
+      method: "PUT",
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ type: type }),
     })
     const data = await response.json()
-    setTodos(data);
+    setTodos(data)
   }
 
-  const changeTodoImportant = (id) => {
-    fetch (`${uri}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' }
+  const removeTodo = async (id) => {
+    const response = await fetch(`${uri}/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
     })
-  }
+    const data = await response.json()
+    setTodos(data)
+  }  
 
   useEffect(() => {
     fetch(uri)
@@ -51,28 +62,28 @@ async function addTodo() {
           setInputValue(e.target.value)
         }}
       ></input>
-      <button onClick={addTodo} disabled={!inputValue.trim()} >Add</button>
+      <button onClick={addTodo} disabled={!inputValue.trim()}>
+        Add
+      </button>
       {todos.map((element) => (
-        <div 
-        key={element.id} 
-        className="todo"    
-        >
-          <input type="checkbox" 
-            checked={element.checked} 
-            onChange = {() => {
-            changeTodoChecked(element.id)
-            }}/>
-          <div 
-            className={element.important?"important":"label"}
-            onClick = {() => {
-            changeTodoImportant(element.id)
-            console.log('important');
+        <div key={element._id} className="todo">
+          <input
+            type="checkbox"
+            checked={element.checked}
+            onChange={() => {
+              changeTodo(element._id, "checked")
+            }}
+          />
+          <div
+            className={element.important ? "important" : "label"}
+            onClick={() => {
+              changeTodo(element._id, "important")
             }}
           >
-          {element.todo}
+            {element.todo}
           </div>
-          <button 
-            //onClick={removeTodo}
+          <button
+            onClick={() => removeTodo(element._id)}
           >delete</button>
         </div>
       ))}
