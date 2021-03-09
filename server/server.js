@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const router = require("router")
 const bodyParser = require("body-parser")
 const uri = "mongodb+srv://keks:22101995@cluster0.o9t1k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
