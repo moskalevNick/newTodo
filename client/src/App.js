@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Modal from "./component/Modal"
 const uri = "http://localhost:7000"
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   const [inputValue, setInputValue] = useState("")
   const [amount, setAmount] = useState(0)
   const [checkedTodo, setCheckedTodo] = useState(0)
+  const [isModalOpen, setModalOpen] = useState(true)
 
   async function addTodo() {
     const t = await fetch(uri, {
@@ -63,61 +65,52 @@ function App() {
     setCheckedTodo((checked.length / todos.length) * 100)
   }, [todos])
 
+  const trigerModal = () => {
+    setModalOpen((prev) => !prev)
+  }
+
   return (
     <div className="App">
-      <h1>now {amount} goals</h1>
-      <input
-        className="inputWindow"
-        placeholder="Add your new todo"
-        value={inputValue}
-        onChange={(e) => {
-          setInputValue(e.target.value)
-        }}
-        onKeyPress={(event) => {
-          if (event.key === "Enter") {
-            addTodo()
-          }
-        }}
-      />
-      <button className="Add" onClick={addTodo} disabled={!inputValue.trim()}>
-        +
-      </button>
-      <div className="List">
-        {todos.map((element) => (
-          <div key={element._id} className="todo">
-            <input
-              type="checkbox"
-              checked={element.checked}
-              onChange={() => {
-                changeTodo(element._id, "checked")
-              }}
-            />
-            <div
-              className={element.important ? "important" : "label"}
-              onClick={() => {
-                changeTodo(element._id, "important")
-              }}
-            >
-              {element.todo}
+      <div className="container">
+        <h1>now {amount} goals</h1>
+        <button onClick={trigerModal}>+</button>
+        <div className="List">
+          {todos.map((element) => (
+            <div key={element._id} className="todo">
+              <input
+                type="checkbox"
+                checked={element.checked}
+                onChange={() => {
+                  changeTodo(element._id, "checked")
+                }}
+              />
+              <div
+                className={element.important ? "important" : "label"}
+                onClick={() => {
+                  changeTodo(element._id, "important")
+                }}
+              >
+                {element.todo}
+              </div>
+              <button onClick={() => removeTodo(element._id)}>
+                <i className="fa fa-trash"></i>
+              </button>
             </div>
-            <button onClick={() => removeTodo(element._id)}>
-              <i className="fa fa-trash"></i>
-            </button>
-          </div>
-        ))}
-      <meter className="meter" low="30" high="70" optimum="50" max="100" value={checkedTodo || 0}></meter>
+          ))}
+          <meter className="meter" low="30" high="70" optimum="50" max="100" value={checkedTodo || 0}></meter>
+        </div>
+        <button
+          className="deleteChecked"
+          onClick={() => {
+            todos.forEach((element) => {
+              if (element.checked) removeTodo(element._id)
+            })
+          }}
+        >
+          delete all checked
+        </button>
+        {isModalOpen && <Modal />}
       </div>
-      <button
-        className="deleteChecked"
-        onClick={() => {
-          todos.forEach((element) => {
-            if (element.checked) removeTodo(element._id)
-          })
-        }}
-      >
-        delete all checked
-      </button>
-      <i className="fa fa-plus-circle" aria-hidden="true" id="plus"></i>
     </div>
   )
 }
