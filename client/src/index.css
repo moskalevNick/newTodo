@@ -1,6 +1,9 @@
 body {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(349deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 1) 0%, rgba(241, 60, 216, 1) 54%);
+  background: linear-gradient(
+    90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 100%
+  );
   width: 100%;
   height: 100vh;
   margin: 0;
@@ -10,99 +13,193 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  text-align: center;
-  color: rgb(230, 18, 18);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-.important {
-  cursor: pointer;
-  width: fit-content;
-  text-align: start;
-  border-radius: 5px;
-  color: red;
-  text-transform: uppercase;
-  font-weight: bolder;
-}
-
-.label {
-  width: fit-content;
-  text-align: start;
-  border-radius: 5px;
-}
-
-.todo {
-  cursor: pointer;
-  margin: auto;
-  text-align: center;
-  padding: 5px;
-  width: 300px;
-  display: grid;
-  grid-template-columns: 1fr 8fr 2fr;
-  height: 20px;
-}
-
-.Add {
-  background-color: rgb(107, 255, 139);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-  font-size: 30px;
-}
-
-input {
-  background-color: white;
-}
-
-button {
-  box-shadow: 7px 7px 4px -3px rgba(4, 5, 5, 0.5);
-  background-color: #fd4444;
-  border-radius: 50%;
-  width: 28px;
-}
-
-.inputWindow {
-  box-shadow: 11px 11px 4px -3px rgba(7, 7, 7, 0.5);
-  width: 300px;
-  height: 30px;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 30px;
-  margin: 15px;
-}
-
-.deleteChecked {
-  margin: 20px;
-  margin-right: 50px;
-  float: right;
-  background-color: darkred;
-  width: 80px;
-  border-radius: 5px;
-  color: rgb(158, 158, 158);
-}
-
-meter {
-  margin: 20px;
-  margin-left: 30px;
-  float: left;
-  width: 200px;
-  height: 30px;
-  border: 3px;
-}
-
-.container {
-  width: fit-content;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  margin: auto;
-}
-
 .App {
   padding: 100px;
 }
+
+.App > .container {
+  width: fit-content;
+  padding: 20px;
+  background: #161a2b;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.amount > .title {
+  color: #fff;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 118, 20, 1) 0%,
+    rgba(255, 84, 17, 1) 100%
+  );
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.todo:nth-child(4n + 1) {
+  background: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+}
+
+.todo:nth-child(4n + 2) {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 12, 241, 1) 0%,
+    rgba(250, 0, 135, 1) 100%
+  );
+}
+
+.todo:nth-child(4n + 3) {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+}
+
+.todo > .delete {
+  font-size: 15px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  transition: 0.1s;
+  width: 30px;
+  height: 30px;
+}
+
+.todo > .delete:hover {
+  font-size: 20px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  transition: 0.1s;
+  width: 30px;
+  height: 30px;
+}
+
+.label, .important {
+  cursor: pointer;
+  width: fit-content;
+  text-align: start;
+  border-radius: 5px;
+}
+
+.important {
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: red;
+}
+
+.meter {
+  float: left;
+  width: 125px;
+  height: 30px;
+}
+
+.blocked-modal {
+  display: none;
+}
+
+.modal {
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: fixed;
+  overflow: auto;
+}
+
+.modal > .container {
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  margin: auto;
+
+}
+
+.close-button-block {
+  display: block;
+}
+/*h1 {*/
+/*  width: 260px;*/
+/*  text-align: center;*/
+/*  display: grid;*/
+/*  color: rgb(230, 18, 18);*/
+/*}*/
+
+/*.openModal{*/
+/*  width: fit-content;*/
+/*  text-align: center;*/
+/*  height: fit-content;*/
+/*  display: grid;*/
+/*  margin-top: 35px;*/
+/*}*/
+
+/*.container1{*/
+/*  display: grid;*/
+/*  grid-template-columns: 4fr 1fr;*/
+/*}*/
+
+/*code {*/
+/*  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;*/
+/*}*/
+
+/*.Add {*/
+/*  background-color: rgb(107, 255, 139);*/
+/*  border-radius: 50%;*/
+/*  width: 50px;*/
+/*  height: 50px;*/
+/*  border: 1px solid black;*/
+/*  font-size: 30px;*/
+/*}*/
+
+/*input {*/
+/*  background-color: white;*/
+/*}*/
+
+/*button {*/
+/*  box-shadow: 7px 7px 4px -3px rgba(4, 5, 5, 0.5);*/
+/*  background-color: #fd4444;*/
+/*  border-radius: 50%;*/
+/*  width: 28px;*/
+/*}*/
+
+/*.inputWindow {*/
+/*  box-shadow: 11px 11px 4px -3px rgba(7, 7, 7, 0.5);*/
+/*  width: 200px;*/
+/*  height: 20px;*/
+/*  border-radius: 10px;*/
+/*  padding: 10px;*/
+/*  font-size: 20px;*/
+/*  margin: 15px;*/
+/*}*/
+
+/*.deleteChecked {*/
+/*  margin: 20px;*/
+/*  margin-right: 50px;*/
+/*  float: right;*/
+/*  background-color: darkred;*/
+/*  width: 80px;*/
+/*  border-radius: 5px;*/
+/*  color: rgb(158, 158, 158);*/
+/*}*/
+
+
+
+
+

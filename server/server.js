@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 
 app.get("/", async(req, res) => {
   const todos = await Todo.find({});
-  res.json(todos);  
+  res.json(todos);
 })
 
 app.put("/:id", async (req, res) => {
@@ -50,7 +50,19 @@ app.delete("/:id", async (req, res) => {
   await Todo.findByIdAndRemove(req.params.id)
   const todos = await Todo.find({});
   res.json(todos)
-}) 
+})
+
+app.delete("/", async (req, res) => {
+  const allTodos = await Todo.find({});
+  const checkedTodos = allTodos.filter( todo => todo.checked === true );
+
+  for ( const todo of checkedTodos ) {
+    await Todo.findByIdAndRemove( todo._id )
+  }
+
+  const todos = await Todo.find({});
+  res.json(todos)
+})
 
 app.listen(7000, () => {
   try {
