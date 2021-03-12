@@ -1,7 +1,7 @@
 import React from "react"
 
-
 const Modal = ({addTodo, inputValue, setInputValue}) => {
+
   return (
     <div className="modal">
       <input

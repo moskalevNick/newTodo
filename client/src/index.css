@@ -14,7 +14,6 @@ h1 {
   width: 260px;
   text-align: center;
   display: grid;
-  
   color: rgb(230, 18, 18);
 }
 
@@ -111,7 +110,6 @@ meter {
 }
 
 .container {
-  
   width: fit-content;
   padding: 20px;
   background-color: white;
