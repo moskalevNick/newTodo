@@ -111,6 +111,7 @@ meter {
 }
 
 .container {
+  
   width: fit-content;
   padding: 20px;
   background-color: white;

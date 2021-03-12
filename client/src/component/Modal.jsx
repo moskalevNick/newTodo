@@ -1,9 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 
 
-const Modal = ({addTodo}) => {
-  const [inputValue, setInputValue] = useState("")  
-    
+const Modal = ({addTodo, inputValue, setInputValue}) => {
   return (
     <div className="modal">
       <input
@@ -25,7 +23,7 @@ const Modal = ({addTodo}) => {
         disabled={!inputValue.trim()}
       >
         +
-      </button>
+      </button> 
     </div>
   )
 }

@@ -101,6 +101,7 @@ function App() {
             </div>
           ))}
         </div>
+        <div className="statistic">
         <meter className="meter" low="30" high="70" optimum="50" max="100" value={checkedTodo || 0}></meter>
         <button
           className="deleteChecked"
@@ -112,7 +113,8 @@ function App() {
         >
           delete all checked
         </button>
-        {isModalOpen && <Modal addTodo={addTodo}/>}
+        </div>
+        {isModalOpen && <Modal addTodo={addTodo} inputValue={inputValue} setInputValue={setInputValue}/>}
       </div>
     </div>
   )
