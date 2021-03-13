@@ -8,10 +8,9 @@ const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }
       <div className={"container"}>
         <div className={"close-button-block"}>
           <button className={"close-button"} onClick={setModalOpen.bind(null, false)}>
-            <FontAwesomeIcon className={"icon"} icon={faTimes} />
+            <FontAwesomeIcon className={"iconX"} icon={faTimes} />
           </button>
         </div>
-
         <input
           className="inputWindow"
           placeholder="Add your new todo"
@@ -25,8 +24,8 @@ const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }
             }
           }}
         />
-        <button className="Add" onClick={addTodo} disabled={!inputValue.trim()}>
-          +
+        <button className={inputValue.trim() ? "emptyAddModal" : "AddModal"} onClick={addTodo} disabled={!inputValue.trim()}>
+          Add todo
         </button>
       </div>
     </div>

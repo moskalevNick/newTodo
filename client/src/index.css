@@ -16,13 +16,14 @@ body {
 .App > .container {
   width: fit-content;
   padding: 20px;
-  background: #161a2b;
+  background: #282e47;
   border-radius: 10px;
   margin: auto;
+  text-align: center;
 }
 
 .amount > .title {
-  color: #fff;
+  color: white;
 }
 
 .todo {
@@ -30,7 +31,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 4px auto;
-  color: #fff;
+  color: white;
   background: linear-gradient(90deg, rgba(255, 118, 20, 1) 0%, rgba(255, 84, 17, 1) 100%);
   padding: 16px;
   border-radius: 5px;
@@ -52,7 +53,7 @@ body {
 .todo > .delete {
   font-size: 15px;
   background: transparent;
-  color: #fff;
+  color: white;
   border: none;
   transition: 0.1s;
   width: 30px;
@@ -62,7 +63,7 @@ body {
 .todo > .delete:hover {
   font-size: 20px;
   background: transparent;
-  color: #fff;
+  color: white;
   border: none;
   transition: 0.1s;
   width: 30px;
@@ -80,12 +81,12 @@ body {
 .important {
   text-transform: uppercase;
   font-weight: bolder;
-  color: red;
+  color: rgb(196, 10, 10);
 }
 
 .meter {
-  float: left;
-  width: 125px;
+  margin: auto;
+  width: 230px;
   height: 30px;
 }
 
@@ -106,12 +107,75 @@ body {
 }
 
 .modal > .container {
-  width: 400px;
-  height: 400px;
-  background: #fff;
+  width: 250px;
+  height: 200px;
+  background-color: #282e47;
   margin: auto;
+  margin-top: 110px;
+  border-radius: 9px;
+  padding: 15px;
 }
 
 .close-button-block {
-  display: block;
+  margin-right: 7px;
+  text-align: right;
+}
+
+.amount {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+}
+
+.plus {
+  border-radius: 50%;
+  margin-top: 35px;
+  margin-right: 10px;
+  height: 28px;
+  width: 28px;
+}
+
+.AddModal,
+.emptyAddModal {
+  margin: auto;
+  height: 30px;
+  margin-top: 30%;
+  border: none;
+  border-radius: 5px;
+}
+
+.emptyAddModal {
+  background-color: green;
+  color: white;
+}
+
+.inputWindow {
+  width: 220px;
+  margin: auto;
+  margin-left: 10px;
+  margin-top: 20%;
+  padding: 5px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
+.iconX {
+  color: white;
+}
+
+.close-button {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  border: none;
+  background-color: red;
+}
+
+.deleteChecked {
+  background-color: red;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
 }
