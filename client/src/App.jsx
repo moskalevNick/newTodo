@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faMoon, faSun, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Modal from "./component/Modal"
+import ModalDelete from "./component/ModalDelete"
 
 const uri = "http://localhost:7000"
 
@@ -12,6 +13,9 @@ function App() {
   const [amount, setAmount] = useState(0)
   const [checkedTodo, setCheckedTodo] = useState(0)
   const [isModalOpen, setModalOpen] = useState(false)
+  const [isDay, setDay] = useState(true)
+  const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
+  const [acceptTodo, setAcceptTodo] = useState({})
 
   const addTodo = async () => {
     const t = await fetch(uri, {
@@ -54,6 +58,7 @@ function App() {
     const data = await response.json()
     setTodos(data)
     setAmount(data.length)
+    setModalDeleteOpen(false)
   }
 
   const removeAllChecked = async () => {
@@ -87,39 +92,56 @@ function App() {
     setModalOpen((prev) => !prev)
   }
 
-  return (
-    <div className={"App"}>
-      <button className={"night"} onClick={triggerModal}>
-        +
-      </button>
-      <div className={"container"}>
-        <div className={"amount"}>
-          <h1 className={"title"}>now {amount} goals</h1>
-          <button className={"plus"} onClick={triggerModal}>
-            +
-          </button>
-        </div>
+  const triggerModalDelete = (data) => {
+    setModalDeleteOpen((prev) => !prev)
+    setAcceptTodo(data)
+  }
 
-        <div className={"list"}>
-          {todos.map((element) => (
-            <div key={element._id} className={"todo"}>
-              <input type={"checkbox"} checked={element.checked} onChange={changeTodo.bind(null, element._id, "checked")} />
-              <div className={element.important ? "important" : "label"} onClick={changeTodo.bind(null, element._id, "important")}>
-                {element.todo}
+  const triggerNight = () => {
+    setDay((prev) => !prev)
+  }
+
+  return (
+    <div className={isDay ? "day" : "night"}>
+      <button className={"nightButton"} onClick={triggerNight}>
+        <FontAwesomeIcon className={"iconMoonNight"} icon={isDay ? faSun : faMoon} size="4x" />
+      </button>
+      <div className="App">
+        <div className={"container"}>
+          <div className={"amount"}>
+            <h1 className={"title"}>now {amount} goals</h1>
+            <button className={"plus"} onClick={triggerModal}>
+              +
+            </button>
+          </div>
+          <div className={"list"}>
+            {todos.map((element) => (
+              <div key={element._id} className={"todo"}>
+                <input type={"checkbox"} checked={element.checked} onChange={changeTodo.bind(null, element._id, "checked")} />
+                <div className={element.important ? "important" : "label"} onClick={changeTodo.bind(null, element._id, "important")}>
+                  {element.todo}
+                </div>
+                <button className={"delete"} onClick={triggerModalDelete.bind(null, element)}>
+                  <FontAwesomeIcon className={"icon"} icon={faTrash} />
+                </button>
               </div>
-              <button className={"delete"} onClick={removeTodo.bind(null, element._id)}>
-                <FontAwesomeIcon className={"icon"} icon={faTrash} />
-              </button>
-            </div>
-          ))}
+            ))}
+          </div>
+          <meter value={checkedTodo || 0} className={"meter"} max="100" low="33" high="66" optimum="80" />
+          <div className={"stat"}>
+            <button className="deleteChecked" onClick={removeAllChecked}>
+              delete all checked
+            </button>
+          </div>
+          <ModalDelete
+            setModalDeleteOpen={setModalDeleteOpen}
+            isModalDeleteOpen={isModalDeleteOpen}
+            triggerModalDelete={triggerModalDelete}
+            acceptTodo={acceptTodo}
+            removeTodo={removeTodo}
+          />
+          <Modal setInputValue={setInputValue} setModalOpen={setModalOpen} isModalOpen={isModalOpen} inputValue={inputValue} addTodo={addTodo} />
         </div>
-        <meter value={checkedTodo || 0} className={"meter"} max="100" low="33" high="66" optimum="80" />
-        <div className={"stat"}>
-          <button className="deleteChecked" onClick={removeAllChecked}>
-            delete all checked
-          </button>
-        </div>
-        <Modal setInputValue={setInputValue} setModalOpen={setModalOpen} isModalOpen={isModalOpen} inputValue={inputValue} addTodo={addTodo} />
       </div>
     </div>
   )
