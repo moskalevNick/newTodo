@@ -6,7 +6,8 @@ import Modal from "./component/Modal"
 import ModalDelete from "./component/ModalDelete"
 import ModalDeleteChecked from "./component/ModalDeleteChecked"
 
-const uri = "http://localhost:7000"
+const uri = process.env.API_URL
+console.log(process.env.API_URL)
 
 function App() {
   const [todos, setTodos] = useState([])
