@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Modal from "./component/Modal"
 import ModalDelete from "./component/ModalDelete"
+import ModalDeleteChecked from "./component/ModalDeleteChecked"
 
 const uri = "http://localhost:7000"
 
@@ -16,7 +17,8 @@ function App() {
   const [isDay, setDay] = useState(true)
   const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
   const [acceptTodo, setAcceptTodo] = useState({})
-
+  const [isModalDeleteCheckedOpen, setModalDeleteCheckedOpen] = useState(false)
+  
   const addTodo = async () => {
     const t = await fetch(uri, {
       method: "POST",
@@ -72,6 +74,7 @@ function App() {
     const data = await response.json()
     setTodos(data)
     setAmount(data.length)
+    setModalDeleteCheckedOpen(false)
   }
 
   useEffect(() => {
@@ -95,6 +98,10 @@ function App() {
   const triggerModalDelete = (data) => {
     setModalDeleteOpen((prev) => !prev)
     setAcceptTodo(data)
+  }
+  
+  const triggerModalDeleteChecked = () => {
+    setModalDeleteCheckedOpen((prev) => !prev)
   }
 
   const triggerNight = () => {
@@ -129,10 +136,17 @@ function App() {
           </div>
           <meter value={checkedTodo || 0} className={"meter"} max="100" low="33" high="66" optimum="80" />
           <div className={"stat"}>
-            <button className="deleteChecked" onClick={removeAllChecked}>
+            <button className="deleteChecked" onClick={triggerModalDeleteChecked} disabled={!checkedTodo}>
               delete all checked
             </button>
           </div>
+          <ModalDeleteChecked
+            setModalDeleteCheckedOpen={setModalDeleteCheckedOpen}
+            isModalDeleteCheckedOpen={isModalDeleteCheckedOpen}
+            triggerModalDeleteChecked={triggerModalDeleteChecked}
+            acceptTodo={acceptTodo}
+            removeAllChecked={removeAllChecked}
+          />
           <ModalDelete
             setModalDeleteOpen={setModalDeleteOpen}
             isModalDeleteOpen={isModalDeleteOpen}
