@@ -5,12 +5,14 @@ const ModalDeleteChecked = ({ isModalDeleteCheckedOpen, removeAllChecked, accept
     <div className={isModalDeleteCheckedOpen ? "modalDeleteChecked" : "blocked-modal"}>
       <div className={"container"}>
         Are you sure, you wanna delete checked todos ?
-        <button className={"sure-button"} onClick={removeAllChecked.bind(null, acceptTodo._id)}>
-          sure
-        </button>
-        <button className={"cancel-button"} onClick={setModalDeleteCheckedOpen.bind(null, false)}>
-          cancel
-        </button>
+        <div className={"buttonsDelete"}>
+          <button className={"sure-button"} onClick={removeAllChecked.bind(null, acceptTodo._id)}>
+            sure
+          </button>
+          <button className={"cancel-button"} onClick={setModalDeleteCheckedOpen.bind(null, false)}>
+            cancel
+          </button>
+        </div>
       </div>
     </div>
   )
