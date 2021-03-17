@@ -16,7 +16,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "API_URL=http://localhost:7000 react-scripts start --watch",
+    "start": "react-scripts start --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
