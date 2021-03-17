@@ -66,9 +66,13 @@ body {
 .label,
 .important {
   cursor: pointer;
-  width: fit-content;
+  width: 250px;
   text-align: start;
   border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .important {
@@ -87,7 +91,9 @@ body {
   display: none;
 }
 
-.modal, .modalDelete, .modalDeleteChecked {
+.modal,
+.modalDelete,
+.modalDeleteChecked {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
@@ -99,7 +105,9 @@ body {
   overflow: auto;
 }
 
-.modal > .container, .modalDelete > .container, .modalDeleteChecked > .container {
+.modal > .container,
+.modalDelete > .container,
+.modalDeleteChecked > .container {
   width: 250px;
   height: 200px;
   background-color: #282e47;
@@ -116,7 +124,7 @@ body {
 
 .amount {
   display: grid;
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 5fr 1fr;
 }
 
 .plus {
@@ -181,6 +189,10 @@ body {
   min-height: 100vh;
 }
 
+.day > .App > .container {
+  background: rgb(128, 1, 128);
+}
+
 .day {
   background: linear-gradient(90deg, rgba(43, 214, 114, 1) 0%, rgba(158, 186, 25, 1) 100%, rgba(132, 0, 255, 1) 100%, rgba(166, 136, 0, 1) 100%);
 }
@@ -197,6 +209,30 @@ body {
   border: none;
 }
 
-.sure-button, .cancel-button {
-  display: flex;
+.modalDelete > .container,
+.modalDeleteChecked > .container {
+  color: blueviolet;
+  height: fit-content;
+}
+
+.buttonsDelete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
+}
+
+.sure-button,
+.cancel-button {
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.list {
+  height: 300px;
+  overflow-y: auto;
+  width: auto;
+}
+
+.noTodos{
+  color: white
 }

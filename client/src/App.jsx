@@ -6,7 +6,7 @@ import Modal from "./component/Modal"
 import ModalDelete from "./component/ModalDelete"
 import ModalDeleteChecked from "./component/ModalDeleteChecked"
 
-const uri = "http://localhost:7000"
+const uri = process.env.REACT_APP_API_URL
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -18,7 +18,7 @@ function App() {
   const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
   const [acceptTodo, setAcceptTodo] = useState({})
   const [isModalDeleteCheckedOpen, setModalDeleteCheckedOpen] = useState(false)
-  
+
   const addTodo = async () => {
     const t = await fetch(uri, {
       method: "POST",
@@ -99,7 +99,7 @@ function App() {
     setModalDeleteOpen((prev) => !prev)
     setAcceptTodo(data)
   }
-  
+
   const triggerModalDeleteChecked = () => {
     setModalDeleteCheckedOpen((prev) => !prev)
   }
@@ -116,12 +116,15 @@ function App() {
       <div className="App">
         <div className={"container"}>
           <div className={"amount"}>
-            <h1 className={"title"}>now {amount} goals</h1>
+            <h1 className={"title"}>you have {amount} goals</h1>
             <button className={"plus"} onClick={triggerModal}>
               +
             </button>
           </div>
           <div className={"list"}>
+            {
+              todos.length === 0 && <p className={"noTodos"}>there are no todos yet</p>
+            }
             {todos.map((element) => (
               <div key={element._id} className={"todo"}>
                 <input type={"checkbox"} checked={element.checked} onChange={changeTodo.bind(null, element._id, "checked")} />
