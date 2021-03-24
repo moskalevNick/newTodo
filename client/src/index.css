@@ -9,7 +9,7 @@ body {
 .App > .container {
   width: fit-content;
   padding: 20px;
-  background: #282e47;
+  background: #3a4261;
   border-radius: 10px;
   margin: auto;
   text-align: center;
@@ -110,7 +110,7 @@ body {
 .modalDeleteChecked > .container {
   width: 250px;
   height: 200px;
-  background-color: #282e47;
+  background-color: #2a314b;
   margin: auto;
   margin-top: 110px;
   border-radius: 9px;
@@ -191,15 +191,15 @@ body {
 }
 
 .day > .App > .container {
-  background: rgb(128, 1, 128);
+  background: rgb(153, 153, 153);
 }
 
 .day {
-  background: linear-gradient(90deg, rgba(43, 214, 114, 1) 0%, rgba(158, 186, 25, 1) 100%, rgba(132, 0, 255, 1) 100%, rgba(166, 136, 0, 1) 100%);
+  background: rgb(228, 238, 178);
 }
 
 .night {
-  background: linear-gradient(90deg, rgba(48, 16, 255, 1) 0%, rgba(100, 115, 255, 1) 100%);
+  background: rgb(50, 47, 73);
 }
 
 .nightButton {
