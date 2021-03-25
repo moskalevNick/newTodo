@@ -7,7 +7,7 @@ const { Schema, model } = require("mongoose")
 const { config } = require("dotenv")
 config()
 
-const PORT = process.env.PORT || 80
+const PORT = process.env.PORT || 7000
 
 const schema = new Schema({
   todo: { type: String, required: true },

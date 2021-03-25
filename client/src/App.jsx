@@ -1,27 +1,24 @@
-/* import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { faMoon, faSun, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Router, Route, Switch, Link } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 import Modal from "./component/Modal"
 import ModalDelete from "./component/ModalDelete"
 import AllImportant from "./component/AllImportant"
 import AllChecked from "./component/AllChecked"
+import Container from "./components/Container"
 
 const uri = process.env.REACT_APP_API_URL
 
 function App() {
-  const [todos, setTodos] = useState([])
+  
   const [inputValue, setInputValue] = useState("")
-  const [amount, setAmount] = useState(0)
-  const [checkedTodo, setCheckedTodo] = useState(0)
-  const [isModalOpen, setModalOpen] = useState(false)
-  const [isDay, setDay] = useState(true)
-  const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
-  const [acceptTodo, setAcceptTodo] = useState({})
-
-
-  const addTodo = async () => {
+  
+  
+  
+  const [isDay, setDay] = useState("")
+ /*  const addTodo = async () => {
     const t = await fetch(uri, {
       method: "POST",
       headers: {
@@ -77,9 +74,9 @@ function App() {
     setTodos(data)
     setAmount(data.length)
     setModalDeleteOpen(false)
-  }
+  } */
 
-  useEffect(() => {
+ /*  useEffect(() => {
     fetch(uri)
       .then((response) => response.json())
       .then((data) => {
@@ -104,133 +101,56 @@ function App() {
 
   const triggerNight = () => {
     setDay((prev) => !prev)
-  }
+  } */
 
   return (
-    <Router>
-    <div className={isDay ? "day" : "night"}>
-      <div className="navBar">
-        <Link to="/">Home</Link>
-        <Link to="/important">Important</Link>
-        <Link to="/checked">Checked</Link>
-        <Switch>
-          <Route path='/'><div>Hello</div>
-       <div className="App">
-        <div className={"container"}>
-          <div className={"amount"}>
-            <h1 className={"title"}>you have {amount} goals</h1>
-            <button className={"plus"} onClick={triggerModal}>
-              +
-            </button>
-          </div>
-          <div className={"list"}>
-            {
-              todos.length === 0 && <p className={"noTodos"}>there are no todos yet</p>
-            }
-            {todos.map((element) => (
-              <div key={element._id} className={"todo"}>
-                <input type={"checkbox"} checked={element.checked} onChange={changeTodo.bind(null, element._id, "checked")} />
-                <div className={element.important ? "important" : "label"} onClick={changeTodo.bind(null, element._id, "important")}>
-                  {element.todo}
+    <Container />
+    /* <Router>
+      <div className={isDay ? "day" : "night"}>
+        <nav>
+          <div className="navBar">
+            <Link to="/">Home</Link>
+            <Link to="/important">Important</Link>
+            <Link to="/checked">Checked</Link>
+            <Switch>
+              <Route path="/">
+                <div>Hello</div>
+                <div className="App">
+                  <div className={"container"}>
+                    
+                    <ModalDelete
+                      setModalDeleteOpen={setModalDeleteOpen}
+                      isModalDeleteOpen={isModalDeleteOpen}
+                      triggerModalDelete={triggerModalDelete}
+                      acceptTodo={acceptTodo}
+                      removeTodo={removeTodo}
+                      removeAllChecked={removeAllChecked}
+                    />
+                    <Modal
+                      setInputValue={setInputValue}
+                      setModalOpen={setModalOpen}
+                      isModalOpen={isModalOpen}
+                      inputValue={inputValue}
+                      addTodo={addTodo}
+                    />
+                  </div>
                 </div>
-                <button className={"delete"} onClick={triggerModalDelete.bind(null, element)}>
-                  <FontAwesomeIcon className={"icon"} icon={faTrash} />
-                </button>
-              </div>
-            ))}
-          </div>
-          <meter value={checkedTodo || 0} className={"meter"} max="100" low="33" high="66" optimum="80" />
-          <div className={"stat"}>
-            <button className="deleteChecked" onClick={triggerModalDelete} disabled={!checkedTodo}>
-              delete all checked
+              </Route>
+              <Route path="/important">
+                <AllImportant />
+              </Route>
+              <Route path="/checked">
+                <AllChecked />
+              </Route>
+            </Switch>
+            <button className={"nightButton"} onClick={triggerNight}>
+              <FontAwesomeIcon className={"iconMoonNight"} icon={isDay ? faSun : faMoon} size="4x" />
             </button>
           </div>
-          <ModalDelete
-            setModalDeleteOpen={setModalDeleteOpen}
-            isModalDeleteOpen={isModalDeleteOpen}
-            triggerModalDelete={triggerModalDelete}
-            acceptTodo={acceptTodo}
-            removeTodo={removeTodo}
-            removeAllChecked={removeAllChecked}
-          />
-          <Modal 
-            setInputValue={setInputValue} 
-            setModalOpen={setModalOpen} 
-            isModalOpen={isModalOpen} 
-            inputValue={inputValue} 
-            addTodo={addTodo} 
-          />
-        </div>
-      </div> 
-          </Route>
-          <Route path='/important'><AllImportant/></Route>
-          <Route path='/checked'><AllChecked/></Route>
-        </Switch>
-        <button className={"nightButton"} onClick={triggerNight}>
-          <FontAwesomeIcon className={"iconMoonNight"} icon={isDay ? faSun : faMoon} size="4x" />
-        </button>
+        </nav>
       </div>
-    </div>
-  </Router>
+    </Router> */
   )
 }
 
 export default App
- */
-
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import AllChecked from "./component/AllChecked";
-
-export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-          <AllChecked />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return 
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
