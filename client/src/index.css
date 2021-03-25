@@ -185,7 +185,6 @@ body {
 
 .night,
 .day {
-  text-align: right;
   width: 100%;
   min-height: 100vh;
 }
@@ -203,9 +202,8 @@ body {
 }
 
 .nightButton {
+  justify-self: end;
   padding: 10px;
-  margin: 30px;
-  margin-bottom: 0px;
   background: transparent;
   border: none;
 }
@@ -236,4 +234,15 @@ body {
 
 .noTodos {
   color: white;
+}
+
+.navBarButton{
+  height: 20px;
+  width:fit-content;
+  align-items:stretch;
+}
+
+.navBar{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 10fr;
 }
