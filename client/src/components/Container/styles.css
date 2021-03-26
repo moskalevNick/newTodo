@@ -1,0 +1,38 @@
+.container {
+    width: fit-content;
+    padding: 20px;
+    background: #3a4261;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .amount > .title {
+    color: white;
+  }
+
+  
+.amount {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+  }
+  
+  .plus {
+    border-radius: 50%;
+    margin-top: 35px;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 28px;
+    width: 28px;
+  }
+
+  
+.deleteChecked {
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 30px;
+    outline: 0%;
+  }
+  

@@ -1,0 +1,10 @@
+
+.list {
+    height: 300px;
+    overflow-y: auto;
+    width: auto;
+  }
+  
+  .noTodos {
+    color: white;
+  }

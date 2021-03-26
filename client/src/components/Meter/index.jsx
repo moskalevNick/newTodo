@@ -1,6 +1,6 @@
 import React from "react"
 
-export const Meter = ( {checkedTodo} ) => {
+const Meter = ( {checkedTodo} ) => {
 	return (
 		<div>
 			<meter 
@@ -15,3 +15,4 @@ export const Meter = ( {checkedTodo} ) => {
 	)
 }
 
+export default Meter
