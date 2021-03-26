@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useMemo} from "react"
 
 import TodoList from "../TodoList"
 import Meter from "../Meter"
 import Modal from "../Modal"
 import ModalDelete from "../ModalDelete"
 import "./styles.css"
-import TodoItem from "../TodoItem"
 
 const uri = process.env.REACT_APP_API_URL
 
-const Container = () => {
+const Container = ({type="main"}) => {
 	const [amount, setAmount] = useState(0)
 	const [isModalOpen, setModalOpen] = useState(false)
 	const [todos, setTodos] = useState([])
@@ -17,7 +16,7 @@ const Container = () => {
 	const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
  	const [acceptTodo, setAcceptTodo] = useState({})
 	const [inputValue, setInputValue] = useState("")
-	
+
   useEffect(() => {
     const checked = todos.filter((todo) => todo.checked === true)
     setCheckedTodo((checked.length / todos.length) * 100)
@@ -32,6 +31,17 @@ const Container = () => {
       })
   }, [])
 
+  const currentTodos = useMemo(() => {
+    if (type === "important") {
+      return todos.filter((todo) => todo.important === true)  
+    } else if (type === "checked") {
+      return todos.filter((todo) => todo.checked === true) 
+    } else {
+      return todos
+    }
+  }, [todos, type])
+    
+
 	const triggerModal = () => {
     setModalOpen((prev) => !prev)
   }
@@ -40,6 +50,20 @@ const Container = () => {
     setModalDeleteOpen((prev) => !prev)
     setAcceptTodo(data)
   } 
+
+  const changeTodo = async (id, type) => {
+    const response = await fetch(`${uri}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ type: type }),
+    })
+    const data = await response.json()
+    setTodos(data)
+    setAmount(data.length) 
+  }
 
 	const addTodo = async () => {
     const t = await fetch(uri, {
@@ -93,7 +117,11 @@ const Container = () => {
             +
           </button> 
       </div>     
-			<TodoList todos={todos}/>
+			<TodoList 
+        todos={currentTodos}
+        changeTodo={changeTodo}
+        triggerModalDelete={triggerModalDelete}
+      />
       <Meter checkedTodo={checkedTodo}/>
 			<ModalDelete
         setModalDeleteOpen={setModalDeleteOpen}

@@ -1,10 +1,8 @@
 import React, { useState } from "react"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 
-import AllImportant from "./components/AllImportant"
-import AllChecked from "./components/AllChecked"
 import Container from "./components/Container"
 import NavBar from "./components/navBar"
 
@@ -23,19 +21,19 @@ const App = () => {
 
         <Switch>
           
-          <Route path="/">
-            <div>Hello</div>
-            <Container />
+          <Route path="/" exact>
+            <Container type={"main"}/>
           </Route>
         
           <Route path="/important">
-            <AllImportant />
+            <Container type={"important"}/>
           </Route>
         
           <Route path="/checked">
-            <AllChecked />
+            <Container type={"checked"}/>
           </Route>
-        
+
+          <Redirect to="/" />
         </Switch>
         
         <button className={"nightButton"} onClick={triggerNight}>

@@ -3,28 +3,9 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./styles.css"
 
-const TodoItem = ( {element} ) => {
-  const uri = process.env.REACT_APP_API_URL
 
-  const changeTodo = async (id, type) => {
-    const response = await fetch(`${uri}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ type: type }),
-    })
-    const data = await response.json()
-    setTodos(data)
-    setAmount(data.length) 
-  }
-
-  const triggerModalDelete = (data) => {
-    setModalDeleteOpen((prev) => !prev)
-    setAcceptTodo(data) 
-  }
-  
+const TodoItem = ( {element, changeTodo, triggerModalDelete} ) => {
+    
   if (!element){
     return null
   }
