@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
 	  <nav className="navBar">
-      <Link to="/" className="navBar_item">Home</Link>
+      <Link to="/" className="navBar_item">All</Link>
       <Link to="/important" className="navBar_item">Important</Link>
       <Link to="/checked" className="navBar_item">Checked</Link>
       <button className={"nightButton"} onClick={triggerNight}>

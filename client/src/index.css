@@ -1,17 +1,17 @@
 body[color-theme="dark"] {
-  --base-color-header: #1f1f1f;
-  --base-color-list: #363636;
+  --base-color-header: #3a3535;
+  --base-color-list: #2b1e50;
   --base-color-text: #ffffff;
-  --base-color-hover: #FFD600;
-  --base-color-border: #858585;
+  --base-color-modal: #2e203b;
+  --base-color-nav:  #482369;
 }
 
 body[color-theme="light"] {
-  --base-color-header: #aeaeae;
-  --base-color-list: #f1f1f1;
+  --base-color-header: #d4deec;
+  --base-color-list: #85b7f8;
   --base-color-text: #000000;
-  --base-color-hover: #ffbf00;
-  --base-color-border: #858585;
+  --base-color-modal: #94a7db;
+  --base-color-nav:  #55e2a0;
 }
 
 body {

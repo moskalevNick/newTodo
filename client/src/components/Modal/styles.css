@@ -1,59 +1,12 @@
-.modal {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  position: fixed;
-  overflow: auto;
-}
-
-.modal > .container {
-  width: 250px;
-  height: 200px;
-  background-color: #2a314b;
-  margin: auto;
-  margin-top: 110px;
-  border-radius: 9px;
-  padding: 15px;
-}
-
-.AddModal,
-.emptyAddModal {
-  margin: auto;
-  height: 30px;
-  margin-top: 30%;
-  border: none;
-  border-radius: 5px;
-}
-
-.emptyAddModal {
-  background-color: green;
-  color: white;
-}
-
-.inputWindow {
-  width: 220px;
-  margin: auto;
-  margin-left: 10px;
-  margin-top: 20%;
-  padding: 5px;
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  border-radius: 3px;
-}
-
-.iconX {
-  color: white;
-}
-
-.close-button {
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  border: none;
-  background-color: red;
-} 
+.buttonsDelete {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+  }
+  
+  .sure-button,
+  .cancel-button {
+    justify-content: space-between;
+    margin: 10px;
+  }
+  

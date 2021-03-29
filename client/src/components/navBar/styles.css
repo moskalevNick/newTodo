@@ -1,5 +1,15 @@
+.navBar {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 10.5fr 1fr 1fr 10fr;
+  background-color: var(--base-color-nav);
+  height: 74px;
+}
+
 .navBar_item {
+  justify-self: end;
   margin: 10px;
+  color: var(--base-color-text);
 }
 
 .nightButton {
@@ -10,16 +20,3 @@
   height: fit-content;
 }
 
-
-
-.buttonsDelete {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 40px;
-}
-
-.sure-button,
-.cancel-button {
-  justify-content: space-between;
-  margin: 10px;
-}
