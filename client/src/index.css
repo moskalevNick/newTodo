@@ -1,3 +1,19 @@
+body[color-theme="dark"] {
+  --base-color-header: #1f1f1f;
+  --base-color-list: #363636;
+  --base-color-text: #ffffff;
+  --base-color-hover: #FFD600;
+  --base-color-border: #858585;
+}
+
+body[color-theme="light"] {
+  --base-color-header: #aeaeae;
+  --base-color-list: #f1f1f1;
+  --base-color-text: #000000;
+  --base-color-hover: #ffbf00;
+  --base-color-border: #858585;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -5,245 +21,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* 
-.App > .container {
-  width: fit-content;
-  padding: 20px;
-  background: #3a4261;
-  border-radius: 10px;
-  margin: auto;
-  text-align: center;
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px;
+  background-color: var(--base-color-header);
 }
 
-.amount > .title {
-  color: white;
-} */
-/* 
-.todo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px auto;
-  color: white;
-  background: linear-gradient(90deg, rgba(255, 118, 20, 1) 0%, rgba(255, 84, 17, 1) 100%);
-  padding: 16px;
-  border-radius: 5px;
-  width: 90%;
-}
-
-.todo:nth-child(4n + 1) {
-  background: linear-gradient(90deg, rgba(93, 12, 255, 1) 0%, rgba(155, 0, 250, 1) 100%);
-}
-
-.todo:nth-child(4n + 2) {
-  background: linear-gradient(90deg, rgba(255, 12, 241, 1) 0%, rgba(250, 0, 135, 1) 100%);
-}
-
-.todo:nth-child(4n + 3) {
-  background: linear-gradient(90deg, rgba(20, 159, 255, 1) 0%, rgba(17, 122, 255, 1) 100%);
-}
-
-.todo > .delete {
-  font-size: 15px;
-  background: transparent;
-  color: white;
-  border: none;
-  transition: 0.1s;
-  width: 30px;
-  height: 30px;
-}
-
-.todo > .delete:hover {
-  font-size: 20px;
-  background: transparent;
-  color: white;
-  border: none;
-  transition: 0.1s;
-  width: 30px;
-  height: 30px;
-}
-
-.label,
-.important {
-  cursor: pointer;
-  width: 250px;
-  text-align: start;
-  border-radius: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-
-.important {
-  text-transform: uppercase;
-  font-weight: bolder;
-  color: rgb(196, 10, 10);
-}
-
- */
- /* .meter {
-  margin: auto;
-  width: 230px;
-  height: 30px;
-}
- */
 .blocked-modal {
   display: none;
 }
 
-.modal,
-.modalDelete,
-.modalDeleteChecked {
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  position: fixed;
-  overflow: auto;
-}
-
-.modal > .container,
-.modalDelete > .container,
-.modalDeleteChecked > .container {
-  width: 250px;
-  height: 200px;
-  background-color: #2a314b;
-  margin: auto;
-  margin-top: 110px;
-  border-radius: 9px;
-  padding: 15px;
-}
-
-.close-button-block {
-  margin-right: 7px;
-  text-align: right;
-}
-/* 
-.amount {
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-}
-
-.plus {
-  border-radius: 50%;
-  margin-top: 35px;
-  margin-right: 10px;
-  margin-left: 10px;
-  height: 28px;
-  width: 28px;
-}
- */
-.AddModal,
-.emptyAddModal {
-  margin: auto;
-  height: 30px;
-  margin-top: 30%;
-  border: none;
-  border-radius: 5px;
-}
-
-.emptyAddModal {
-  background-color: green;
-  color: white;
-}
-
-.inputWindow {
-  width: 220px;
-  margin: auto;
-  margin-left: 10px;
-  margin-top: 20%;
-  padding: 5px;
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  border-radius: 3px;
-}
-
-.iconX {
-  color: white;
-}
-
-.close-button {
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  border: none;
-  background-color: red;
-}
-/* 
-.deleteChecked {
-  background-color: red;
-  border: none;
-  color: white;
-  border-radius: 10px;
-  height: 30px;
-  outline: 0%;
-}
- */
-.night,
-.day {
-  width: 100%;
-  min-height: 100vh;
-}
-
-.day > .App > .container {
-  background: rgb(153, 153, 153);
-}
-
-.day {
-  background: rgb(228, 238, 178);
-}
-
-.night {
-  background: rgb(50, 47, 73);
-}
-
-.nightButton {
-  justify-self: end;
-  padding: 10px;
-  background: transparent;
-  border: none;
-}
-
-.modalDelete > .container,
-.modalDeleteChecked > .container {
-  color: blueviolet;
-  height: fit-content;
-}
-
-.buttonsDelete {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 40px;
-}
-
-.sure-button,
-.cancel-button {
-  justify-content: space-between;
-  margin: 10px;
-}
-/* 
-.list {
-  height: 300px;
-  overflow-y: auto;
-  width: auto;
-}
-
-.noTodos {
-  color: white;
-}
- */
-.navBarButton{
-  height: 20px;
-  width:fit-content;
-  align-items:stretch;
-}
-
-.navBar{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 10fr;
-}

@@ -1,38 +1,40 @@
-.container {
-    width: fit-content;
-    padding: 20px;
-    background: #3a4261;
-    border-radius: 10px;
-    margin: auto;
-    text-align: center;
-  }
-  
-  .amount > .title {
-    color: white;
-  }
+@import "../../index.css";
 
+.box {
+  width: fit-content;
+  padding: 20px;
+  background: var(--base-color-list);
+  border-radius: 10px;
+  margin: auto;
+  text-align: center;  
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-top: 10px;
+}
   
 .amount {
-    display: grid;
-    grid-template-columns: 5fr 1fr;
-  }
-  
-  .plus {
-    border-radius: 50%;
-    margin-top: 35px;
-    margin-right: 10px;
-    margin-left: 10px;
-    height: 28px;
-    width: 28px;
-  }
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+}
 
-  
+.amount > .title {
+  color: var(--base-color-text);
+}
+
+.amount > .plus {
+  border-radius: 50%;
+  margin-top: 35px;
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 28px;
+  width: 28px;
+}
+ 
 .deleteChecked {
-    background-color: red;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    height: 30px;
-    outline: 0%;
-  }
-  
+  background-color: red;
+  border: none;
+  color: var(--base-color-text);
+  border-radius: 10px;
+  height: 30px;
+  outline: 0%;
+}

@@ -1,0 +1,25 @@
+.navBar_item {
+  margin: 10px;
+}
+
+.nightButton {
+  justify-self: end;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  height: fit-content;
+}
+
+
+
+.buttonsDelete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
+}
+
+.sure-button,
+.cancel-button {
+  justify-content: space-between;
+  margin: 10px;
+}

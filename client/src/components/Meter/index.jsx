@@ -1,11 +1,12 @@
 import React from "react"
+import "./styles.css"
 
 const Meter = ( {checkedTodo} ) => {
 	return (
 		<div>
 			<meter 
 				value={checkedTodo || 0} 
-				className={"meter"} 
+				className="meter" 
 				max="100" 
 				low="33" 
 				high="66" 

@@ -1,0 +1,26 @@
+.modalDelete {
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: fixed;
+  overflow: auto;
+}
+
+.modalDelete > .container {
+  width: 250px;
+  height: 200px;
+  background-color: #2a314b;
+  margin: auto;
+  margin-top: 110px;
+  border-radius: 9px;
+  padding: 15px;
+}
+
+.modalDelete > .container {
+  color: blueviolet;
+  height: fit-content;
+}

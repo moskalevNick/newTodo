@@ -1,24 +1,15 @@
-import React, { useState } from "react"
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import React from "react"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 
 import Container from "./components/Container"
 import NavBar from "./components/navBar"
 
 const App = () => {
-  
-  const [isDay, setDay] = useState("")
-    
-  const triggerNight = () => {
-    setDay((prev) => !prev)
-  } 
-
   return (
     <Router>
-      <div className={isDay ? "day" : "night"}>
-        <NavBar/>
-
+      <div className="container">
+        <NavBar />
+        
         <Switch>
           
           <Route path="/" exact>
@@ -35,11 +26,6 @@ const App = () => {
 
           <Redirect to="/" />
         </Switch>
-        
-        <button className={"nightButton"} onClick={triggerNight}>
-          <FontAwesomeIcon className={"iconMoonNight"} icon={isDay ? faSun : faMoon} size="4x" />
-        </button>
-      
       </div>
     </Router>
   )

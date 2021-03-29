@@ -110,12 +110,12 @@ const Container = ({type="main"}) => {
   } 
 
 	return (
-    <div className="container">
+    <div className="box">
 			<div className={"amount"}>
    			<h1 className={"title"}>you have {amount} goals</h1>
-          <button className={"plus"} onClick={triggerModal}>
-            +
-          </button> 
+        <button className={"plus"} onClick={triggerModal}>
+          +
+        </button> 
       </div>     
 			<TodoList 
         todos={currentTodos}
