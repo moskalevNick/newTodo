@@ -20,3 +20,14 @@
   height: fit-content;
 }
 
+.autor{
+  height: 83vh;
+  display: grid;
+  justify-items: right;
+  align-items: flex-end;
+  padding-right: 10px;
+}
+
+.autorLink {
+  color: var(--base-color-text);
+}

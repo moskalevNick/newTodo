@@ -146,7 +146,7 @@ const Container = ({type="main"}) => {
 				>
 					delete all checked
         </button> 
-      </div>
+      </div>      
 		</div>
   )
 }
