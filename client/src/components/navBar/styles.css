@@ -21,11 +21,9 @@
 }
 
 .autor{
-  height: 83vh;
-  display: grid;
-  justify-items: right;
-  align-items: flex-end;
-  padding-right: 10px;
+  position:absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .autorLink {

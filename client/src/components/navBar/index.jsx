@@ -33,8 +33,13 @@ const NavBar = () => {
         </button>  
       </nav>
       <div className="autor">
-        <a className="autorLink" href="https://vk.com/nikolyamoskalev">ⓒMoskalevNick</a>
-      </div>
+        <a 
+          className="autorLink" 
+          href="https://vk.com/nikolyamoskalev" 
+          target="_blank"
+          rel="noreferrer"
+        >ⓒMoskalevNick</a>
+      </div>  
     </div>  
 	)
 }
