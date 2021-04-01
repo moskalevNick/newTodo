@@ -57,7 +57,7 @@
   
   .important {
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: 500;
     color: rgb(153, 17, 17);
   }
   

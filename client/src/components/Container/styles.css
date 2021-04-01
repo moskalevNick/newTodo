@@ -23,7 +23,7 @@
 
 .plus {
   border-radius: 50%;
-  margin-top: 35px;
+  margin-top: 15px;
   margin-right: 10px;
   margin-left: 10px;
   height: 28px;
@@ -55,7 +55,7 @@
 
 .modal > .box,
 .modalDelete > .box {
-  width: 250px;
+  width: 400px;
   height: 200px;
   background-color: var(--base-color-modal);
   margin: auto;
@@ -65,41 +65,6 @@
   color: var(--base-color-text);
 }
 
-.AddModal,
-.emptyAddModal {
-  margin: auto;
-  height: 30px;
-  margin-top: 30%;
-  border: none;
-  border-radius: 5px;
+.modal > .box{
+  width: 300px;
 }
-
-.emptyAddModal {
-  background-color: rgb(45, 148, 45);
-  color: var(--base-color-text);
-}
-
-.inputWindow {
-  width: 220px;
-  margin: auto;
-  margin-left: 10px;
-  margin-top: 20%;
-  padding: 5px;
-  background-color: transparent;
-  color: var(--base-color-text);
-  border: 1px solid white;
-  border-radius: 3px;
-}
-
-.iconX {
-  color: var(--base-color-text);
-}
-
-.close-button {
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  border: none;
-  background-color: rgb(218, 41, 41);
-  margin-left: 225px;
-} 

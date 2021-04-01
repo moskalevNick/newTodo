@@ -9,9 +9,7 @@ const App = () => {
     <Router>
       <div className="container">
         <NavBar />
-        
-        <Switch>
-          
+        <Switch>       
           <Route path="/" exact>
             <Container type={"main"}/>
           </Route>

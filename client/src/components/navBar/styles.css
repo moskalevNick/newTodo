@@ -1,15 +1,24 @@
 .navBar {
   display: grid;
   width: 100vw;
-  grid-template-columns: 10.5fr 1fr 1fr 10fr;
+  grid-template-columns: 2fr 1fr;
   background-color: var(--base-color-nav);
   height: 74px;
+}
+
+.links{
+  margin-top: 25px;
+  margin-left: 30px;
 }
 
 .navBar_item {
   justify-self: end;
   margin: 10px;
   color: var(--base-color-text);
+} 
+
+.underline{
+  color:rgb(11, 134, 134);
 }
 
 .nightButton {
