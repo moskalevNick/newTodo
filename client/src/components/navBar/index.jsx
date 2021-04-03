@@ -1,4 +1,4 @@
-import React/* , {useState, useEffect} */ from "react"
+import React  , { useState,  useEffect}    from "react"
 import { NavLink } from "react-router-dom"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -11,7 +11,7 @@ import {rootReducer} from '../../redux/rootReducer'
 
 const NavBar = () => {
     
-  const store = createStore(
+   const store = createStore(
     rootReducer,  
     compose(
         applyMiddleware(thunk),
@@ -20,26 +20,29 @@ const NavBar = () => {
   )
 
   const triggerNight = () => {
-    const netTheme = document.body.classList.contains("light")
-      ? "dark"
-      : "light"
-    store.dispatch(changeTheme(netTheme))
+    if (document.body.setAttribute === "light" ) {
+      document.body.setAttribute('color-theme', 'dark')
+    } else {
+      document.body.setAttribute('color-theme', 'light')
+    }  
+    store.dispatch(changeTheme())  
   }
-
-  //document.body.className = "dark"
+  
 
   store.subscribe(() => {
-    const state = store.getState()
-    document.body.className = state.value;
+    
+    const state = store.getState() 
+    document.body.setAttribute('color-theme', 'dark')
+    console.log(document.body.setAttribute);
   })  
     
-  store.dispatch({type : "___INITAPP___"})
+  store.dispatch({type : "___INITAPP___"})  
 
-  /* const [isDay, setDay] = useState(true)
+    /* const [isDay, setDay] = useState(true)
     
   useEffect(() => {
     document.body.setAttribute('color-theme', 'light')
-  }, [])
+  }, []) 
 
   const triggerNight = () => {
     setDay((prev) => !prev)
@@ -48,8 +51,8 @@ const NavBar = () => {
     } else {
       document.body.setAttribute('color-theme', 'light');
     }
-  } 
-   */ 
+  }  */ 
+   
   return (
     <div>  
       <nav className="navBar">

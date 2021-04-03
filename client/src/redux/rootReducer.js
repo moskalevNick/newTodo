@@ -10,7 +10,7 @@ export function rootReducer(state = initialThemeValue, action){
             state.value = "dark"
         } else if (state.value === "dark"){
             state.value = "light"
-        }
+        } 
     }
     return state
 }
