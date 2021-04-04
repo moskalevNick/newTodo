@@ -1,34 +1,32 @@
 import React, {useState, useEffect, useMemo} from "react"
+import {useDispatch, useSelector} from 'react-redux'
 
+import {setTodos, removeTodo, addTodo, changeTodo, removeAllChecked} from '../../redux/actions'
 import TodoList from "../TodoList"
 import Meter from "../Meter"
 import Modal from "../Modal"
 import ModalDelete from "../ModalDelete"
 import "./styles.css"
 
-const uri = process.env.REACT_APP_API_URL
-
 const Container = ({type="main"}) => {
 	const [amount, setAmount] = useState(0)
 	const [isModalOpen, setModalOpen] = useState(false)
-	const [todos, setTodos] = useState([])
 	const [checkedTodo, setCheckedTodo] = useState(0)
 	const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
  	const [acceptTodo, setAcceptTodo] = useState({})
 	const [inputValue, setInputValue] = useState("")
-
+  
+  const dispatch = useDispatch()
+  const { todos } = useSelector(state => state)
+    
   useEffect(() => {
     const checked = todos.filter((todo) => todo.checked === true)
     setCheckedTodo((checked.length / todos.length) * 100)
+    setAmount(todos.length)
   }, [todos])
 
   useEffect(() => {
-    fetch(uri)
-      .then((response) => response.json())
-      .then((data) => {
-        setAmount(data.length)
-        setTodos(data)
-      })
+    dispatch(setTodos())      
   }, [])
 
   const currentTodos = useMemo(() => {
@@ -51,61 +49,23 @@ const Container = ({type="main"}) => {
     setAcceptTodo(data)
   } 
 
-  const changeTodo = async (id, type) => {
-    const response = await fetch(`${uri}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ type: type }),
-    })
-    const data = await response.json()
-    setTodos(data)
-    setAmount(data.length) 
+  const changeCurrentTodo = (id, type) => {
+    dispatch(changeTodo(id, type))
   }
 
-	const addTodo = async () => {
-    const t = await fetch(uri, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ todo: inputValue, important: false, checked: false }),
-    })
-    const response = await t.json()
-    setTodos(response)
-    setInputValue("")
-    setAmount(response.length)
+	const addNewTodo = () => {
+    dispatch(addTodo( { todo: inputValue, important: false, checked: false } ))
     setModalOpen(false)
+    setInputValue("")
   }
 
-	const removeTodo = async (id) => {
-    const response = await fetch(`${uri}/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-    const data = await response.json()
-    setTodos(data)
-    setAmount(data.length)
+	const removeTodoById = (id) => {
+    dispatch(removeTodo(id))
     setModalDeleteOpen(false)
   }
 
-	const removeAllChecked = async () => {
-    const response = await fetch(uri, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-    const data = await response.json()
-    setTodos(data)
-    setAmount(data.length)
+	const removeCheckedTodos = async () => {
+    dispatch(removeAllChecked())
     setModalDeleteOpen(false)
   } 
 
@@ -119,7 +79,7 @@ const Container = ({type="main"}) => {
       </div>     
 			<TodoList 
         todos={currentTodos}
-        changeTodo={changeTodo}
+        changeTodo={changeCurrentTodo}
         triggerModalDelete={triggerModalDelete}
       />
       <Meter checkedTodo={checkedTodo}/>
@@ -128,15 +88,15 @@ const Container = ({type="main"}) => {
         isModalDeleteOpen={isModalDeleteOpen}
         triggerModalDelete={triggerModalDelete}
         acceptTodo={acceptTodo}
-        removeTodo={removeTodo}
-        removeAllChecked={removeAllChecked}
+        removeTodo={removeTodoById}
+        removeAllChecked={removeCheckedTodos}
       />
       <Modal
         setInputValue={setInputValue}
         setModalOpen={setModalOpen}
         isModalOpen={isModalOpen}
         inputValue={inputValue}
-        addTodo={addTodo}
+        addTodo={addNewTodo}
       />
       <div className={"stat"}>
         <button 

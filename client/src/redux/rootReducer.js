@@ -1,16 +1,21 @@
-import { CHANGE_THEME } from "./types"
+import { SET_TODOS, CHANGE_THEME } from "./types"
 
-const initialThemeValue = {
-    value : "light"
+const initialState = {
+    themeIsDay : true,
+    todos : []
 }
 
-export function rootReducer(state = initialThemeValue, action){
+export default function rootReducer(state = initialState, action){
     if (action.type === CHANGE_THEME) {
-        if (state.value === "light") {
-            state.value = "dark"
-        } else if (state.value === "dark"){
-            state.value = "light"
+        if (state.themeIsDay) {
+            return {...state, themeIsDay: false}
+        } else {
+            return {...state, themeIsDay: true}
         } 
+    } 
+
+    if (action.type === SET_TODOS) {
+        return { ...state, todos : action.payload } 
     }
     return state
 }

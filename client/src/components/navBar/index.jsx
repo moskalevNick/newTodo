@@ -1,58 +1,25 @@
-import React  , { useState,  useEffect}    from "react"
+import React, {useEffect}  from "react"
 import { NavLink } from "react-router-dom"
+import {useDispatch, useSelector} from 'react-redux'
+
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {createStore, compose, applyMiddleware} from "redux"
-import thunk from "redux-thunk"
-
 import "./styles.css"
-import {changeTheme} from "../../redux/actions"
-import {rootReducer} from '../../redux/rootReducer'
+import {changeTheme} from '../../redux/actions'
 
 const NavBar = () => {
-    
-   const store = createStore(
-    rootReducer,  
-    compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  )
-
-  const triggerNight = () => {
-    if (document.body.setAttribute === "light" ) {
-      document.body.setAttribute('color-theme', 'dark')
-    } else {
-      document.body.setAttribute('color-theme', 'light')
-    }  
-    store.dispatch(changeTheme())  
-  }
   
+  const dispatch = useDispatch()
+  const { themeIsDay } = useSelector(state => state)
 
-  store.subscribe(() => {
-    
-    const state = store.getState() 
-    document.body.setAttribute('color-theme', 'dark')
-    console.log(document.body.setAttribute);
-  })  
-    
-  store.dispatch({type : "___INITAPP___"})  
-
-    /* const [isDay, setDay] = useState(true)
-    
   useEffect(() => {
-    document.body.setAttribute('color-theme', 'light')
-  }, []) 
+    document.body.setAttribute('color-theme', themeIsDay ? "light" : "dark")
+  }, [themeIsDay]) 
 
   const triggerNight = () => {
-    setDay((prev) => !prev)
-    if ( isDay ) {
-      document.body.setAttribute('color-theme', 'dark');
-    } else {
-      document.body.setAttribute('color-theme', 'light');
-    }
-  }  */ 
-   
+    dispatch(changeTheme())   
+  }  
+
   return (
     <div>  
       <nav className="navBar">
@@ -79,9 +46,7 @@ const NavBar = () => {
         <button className={"nightButton"} onClick={triggerNight}>
           <FontAwesomeIcon 
             className={"icon"} 
-            icon={document.body.classList==="light" 
-              ? faSun 
-              : faMoon} 
+            icon={themeIsDay ? faSun : faMoon} 
             size="4x"
           />
         </button>  
