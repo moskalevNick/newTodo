@@ -1,17 +1,12 @@
 import React from "react"
+import {IonProgressBar} from "@ionic/react"
+
 import "./styles.css"
 
 const Meter = ( {checkedTodo} ) => {
 	return (
-		<div>
-			<meter 
-				value={checkedTodo || 0} 
-				className="meter" 
-				max="100" 
-				low="33" 
-				high="66" 
-				optimum="80" 
-			/>
+		<div className="meter-container">
+			<IonProgressBar value={checkedTodo/100} className={"meter"}/>
 		</div>
 	)
 }

@@ -1,5 +1,15 @@
 .meter {
   margin: auto;
-  width: 230px;
-  height: 30px;
+  width: 80vw;
+  height: 10px;
+}
+
+.meter-container{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.progress,
+.progress-indeterminate {
+  background: black
 }

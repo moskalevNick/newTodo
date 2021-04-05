@@ -5,22 +5,10 @@
     align-items: center;
     margin: 4px auto;
     color: var(--base-color-text);
-    background: linear-gradient(90deg, rgb(255, 173, 96) 0%, rgb(245, 92, 32) 100%);
+    background: var(--base-color-list);
     padding: 16px;
     border-radius: 5px;
     width: 90%;
-  }
-  
-  .todo:nth-child(4n + 1) {
-    background: linear-gradient(90deg, rgb(148, 95, 253) 0%, rgb(155, 0, 250, 1) 100%);
-  }
-  
-  .todo:nth-child(4n + 2) {
-    background: linear-gradient(90deg, rgb(255, 88, 247) 0%, rgb(231, 11, 128)100%);
-  }
-  
-  .todo:nth-child(4n + 3) {
-    background: linear-gradient(90deg, rgb(77, 148, 253) 0%,rgb(1, 96, 228) 100%);
   }
   
   .todo > .delete {

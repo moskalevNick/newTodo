@@ -50,4 +50,9 @@
   width: var(--width);
   height: var(--height);
   border-radius: 2px;
+ 
+}
+
+.modal-wrapper {
+ margin-bottom: 260px;
 }

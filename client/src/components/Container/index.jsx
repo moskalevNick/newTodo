@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useMemo} from "react"
 import {useDispatch, useSelector} from 'react-redux'
+import {IonButton} from "@ionic/react"
 
 import {setTodos, removeTodo, addTodo, changeTodo, removeAllChecked} from '../../redux/actions'
 import TodoList from "../TodoList"
@@ -72,10 +73,10 @@ const Container = ({type="main"}) => {
 	return (
     <div className="box">
 			<div className={"amount"}>
-   			<h1 className={"title"}>you have {amount} goals</h1>
-        <button className={"plus"} onClick={triggerModal}>
-          +
-        </button> 
+        <div className="content">
+   			  <h1 className={"title"}>you have {amount} goals</h1>
+          <IonButton color="success" onClick={triggerModal} className={"plus"}>+</IonButton>
+        </div>
       </div>     
 			<TodoList 
         todos={currentTodos}
@@ -99,13 +100,11 @@ const Container = ({type="main"}) => {
         addTodo={addNewTodo}
       />
       <div className={"stat"}>
-        <button 
-					className="deleteChecked" 
-					onClick={triggerModalDelete} 
-					disabled={!checkedTodo}
-				>
-					delete all checked
-        </button> 
+        <IonButton 
+          color="danger" 
+          onClick={triggerModalDelete} 
+          disabled={!checkedTodo}
+        >Delete all checked</IonButton>
       </div>    
 		</div>
   )

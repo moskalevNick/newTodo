@@ -47,7 +47,7 @@ const NavBar = () => {
           <FontAwesomeIcon 
             className={"icon"} 
             icon={themeIsDay ? faSun : faMoon} 
-            size="4x"
+            size="2x"
           />
         </button>  
       </nav>

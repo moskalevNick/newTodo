@@ -25,9 +25,6 @@ body {
 .container {
   width: 100vw;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 50px;
   background-color: var(--base-color-header);
 }
 
