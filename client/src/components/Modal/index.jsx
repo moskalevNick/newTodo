@@ -1,18 +1,20 @@
 import React from "react"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {IonModal} from "@ionic/react"
+
 import "./styles.css"
 
 const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }) => {
   return (
-    <div className={isModalOpen ? "modal" : "blocked-modal"}>
-      <div className={"box"}>
+    <IonModal isOpen={isModalOpen} cssClass={"modal"}>
+      <div className="openedModal">
         <button className={"close-button"} onClick={setModalOpen.bind(null, false)}>
           <FontAwesomeIcon className={"iconX"} icon={faTimes} />
         </button>
         <input
           className="inputWindow"
-          placeholder="Add your new todo"
+          placeholder="Write your new todo"
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value)
@@ -27,7 +29,7 @@ const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }
           Add todo
         </button>
       </div>
-    </div>
+    </IonModal>
   )
 }
 

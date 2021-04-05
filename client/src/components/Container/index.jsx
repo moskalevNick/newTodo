@@ -26,8 +26,8 @@ const Container = ({type="main"}) => {
   }, [todos])
 
   useEffect(() => {
-    dispatch(setTodos())      
-  }, [])
+    dispatch(setTodos())    
+  }, [dispatch])
 
   const currentTodos = useMemo(() => {
     if (type === "important") {

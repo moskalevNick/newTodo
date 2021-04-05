@@ -3,19 +3,18 @@ import TodoItem from "../TodoItem"
 import "./styles.css"
 
 const TodoList = ( {todos, changeTodo, triggerModalDelete} ) => {
-
   return (
-      <div className={"list"}>
-          {todos.length === 0 && <p className={"noTodos"}>there are no todos yet</p>}
-          {todos.map((element) => (
-            <TodoItem 
-              triggerModalDelete={triggerModalDelete}
-              changeTodo={changeTodo}
-              key={element._id} 
-              element={element} 
-            />
-          ))}
-      </div>
+    <div className={"list"}>
+        {todos.length === 0 && <p className={"noTodos"}>there are no todos yet <br/>(or they waiting from server)</p>}
+        {todos.map((element) => (
+          <TodoItem 
+            triggerModalDelete={triggerModalDelete}
+            changeTodo={changeTodo}
+            key={element._id} 
+            element={element} 
+          />
+        ))}
+    </div>
   )
 }
 

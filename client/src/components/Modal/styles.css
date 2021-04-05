@@ -1,32 +1,22 @@
-.buttonsDelete {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 40px;
-  }
-  
-  .sure-button,
-  .cancel-button {
-    justify-content: space-between;
-    margin: 10px;
-    color: black;
-  }
-  
 .close-button {
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  height: 35px;
+  width: 35px;
   border: none;
   background-color: rgb(218, 41, 41);
-  margin-left: 245px;
+  margin-left: 345px;
+  margin-top: 20px;
 } 
   
 .AddModal,
 .emptyAddModal {
-  margin: auto;
-  height: 30px;
-  margin-top: 30px;
+  margin-left: 130px;
+  margin-right: 130px;
+  height: 40px;
+  width: 140px;
+  margin-top: 80px;
   border: none;
-  border-radius: 5px;
+  font-size: 120%;
 }
 
 .AddModal{
@@ -40,8 +30,9 @@
 
 .inputWindow {
   width: 270px;
-  margin: auto;
-  margin-top: 20%;
+  margin-top: 50px;
+  margin-left: 60px;
+  margin-right: 60px;
   padding: 5px;
   background-color: transparent;
   color: var(--base-color-text);
@@ -51,5 +42,12 @@
 
 .iconX {
   color: var(--base-color-text);
+  font-size: 150%;
 }
 
+.openedModal{
+  background-color: var(--base-color-list);
+  width: var(--width);
+  height: var(--height);
+  border-radius: 2px;
+}

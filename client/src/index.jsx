@@ -7,6 +7,7 @@ import {compose, createStore, applyMiddleware} from 'redux'
 import rootReducer from "./redux/rootReducer"
 import App from "./App.jsx"
 import "./index.css"
+import '@ionic/react/css/core.css'
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(thunk),
