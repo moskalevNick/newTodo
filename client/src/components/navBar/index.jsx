@@ -1,6 +1,7 @@
 import React, {useEffect}  from "react"
 import { NavLink } from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
+import {IonButton} from "@ionic/react"
 
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -43,13 +44,13 @@ const NavBar = () => {
             Checked
           </NavLink>
         </div>
-        <button className={"nightButton"} onClick={triggerNight}>
+        <IonButton onClick={triggerNight} className="buttonChangeTheme">
           <FontAwesomeIcon 
             className={"icon"} 
             icon={themeIsDay ? faSun : faMoon} 
             size="2x"
           />
-        </button>  
+        </IonButton> 
       </nav>
       <div className="autor">
         <a 

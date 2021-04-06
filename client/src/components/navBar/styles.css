@@ -1,7 +1,7 @@
 .navBar {
   display: grid;
   width: 100vw;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   background-color: var(--base-color-nav);
   height: 74px;
 }
@@ -15,19 +15,23 @@
   justify-self: end;
   margin: 10px;
   color: var(--base-color-text);
+  text-decoration: none;
 } 
 
 .underline{
   color:rgb(11, 134, 134);
+  text-decoration: underline;
 }
 
-.nightButton {
+.buttonChangeTheme {
   justify-self: end;
-  padding: 25px;
-  background: transparent;
-  border: none;
-  height: fit-content;
+  --ion-color-primary: var(--base-color-nav);
+  align-self: center;
+}
 
+.navBar > .button-solid{  
+  --box-shadow: 0;
+  --background-hover: 0;
 }
 
 .autor{
