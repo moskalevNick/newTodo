@@ -9,7 +9,14 @@
   margin-bottom: 10px;
 }
 
-.progress,
-.progress-indeterminate {
-  background: black
+.redMeter{
+--progress-background: #eb445a;
+}
+
+.yellowmeter{
+  --progress-background: #ffca22;
+}
+
+.greenMeter{
+  --progress-background: #42d77d;
 }

@@ -20,6 +20,10 @@ const Container = ({type="main"}) => {
   const dispatch = useDispatch()
   const { todos } = useSelector(state => state)
     
+    if(checkedTodo === 100){
+      console.log("ura");
+    }
+
   useEffect(() => {
     const checked = todos.filter((todo) => todo.checked === true)
     setCheckedTodo((checked.length / todos.length) * 100)

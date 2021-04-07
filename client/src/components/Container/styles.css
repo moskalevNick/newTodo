@@ -7,17 +7,17 @@
 }
 
 .content {
-  
   display: flex;
   margin: auto;
 }
 
 .title {
   color: var(--base-color-text);
+  font-family:'Franklin Gothic Medium'
 }
 
 .plus {
-  margin: 30px 20px 10px;
+  margin: 25px 20px 10px;
   height: 28px;
   width: 28px;
   font-size: 1.5em;
@@ -33,6 +33,7 @@
 .stat{
   text-align: center;
 }
+
 .content > .ion-color-success,
 .stat > .ion-color-danger{
   --ion-color-contrast: var(--base-color-text) !important;

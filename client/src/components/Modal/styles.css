@@ -12,6 +12,10 @@
   --ion-color-contrast: var(--base-color-text) !important;
 } 
 
+.item-has-focus{
+  --highlight-color-focused: #c93434 ;
+}
+
 .buttonAddFullModal,
 .buttonAddEmptyModal {
   margin-left: 130px;
@@ -31,6 +35,7 @@
 
 .openedModal{
   background-color: var(--base-color-list);
+  
   width: var(--width);
   height: var(--height);
   border-radius: 2px;

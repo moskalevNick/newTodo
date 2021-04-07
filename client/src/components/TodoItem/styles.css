@@ -31,7 +31,7 @@
 }
 
 .label,
-.important {
+.importantTodo {
   cursor: pointer;
   width: 250px;
   text-align: start;
@@ -42,10 +42,17 @@
   text-align: center;
 }
 
-.important {
+.importantTodo {
   text-transform: uppercase;
-  font-weight: 500;
-  color: rgb(153, 17, 17);
+  font-weight: 700;
+  color: rgb(241, 18, 18);
+}
+
+.checkedTodo {
+  text-decoration:line-through;
+  font-weight:normal;
+  color: var(--base-color-text);
+  text-transform:none;
 }
 
 .icon {

@@ -1,12 +1,18 @@
 import React from "react"
 import {IonCheckbox, IonButton} from "@ionic/react"
-
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import classNames from 'classnames';
+
 import "./styles.css"
 
 
 const TodoItem = ( {element, changeTodo, triggerModalDelete} ) => {
+  let todoNames = classNames({
+    'label': true,
+    'checkedTodo': element.checked,
+    'importantTodo': element.important
+  });
   if (!element){
     return null
   }
@@ -17,7 +23,7 @@ const TodoItem = ( {element, changeTodo, triggerModalDelete} ) => {
         onIonChange={changeTodo.bind(null, element._id, "checked")} 
       />
       <div 
-				className={ element.important ? "important" : "label" } 
+				className={ todoNames }  
 				onClick={ changeTodo.bind(null, element._id, "important") }
 			>
         { element.todo }
