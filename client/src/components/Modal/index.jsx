@@ -1,7 +1,5 @@
 import React from "react"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {IonModal} from "@ionic/react"
+import {IonModal, IonItem, IonLabel, IonInput, IonButton} from "@ionic/react"
 
 import "./styles.css"
 
@@ -9,25 +7,38 @@ const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }
   return (
     <IonModal isOpen={isModalOpen} cssClass={"modal"}>
       <div className="openedModal">
-        <button className={"close-button"} onClick={setModalOpen.bind(null, false)}>
-          <FontAwesomeIcon className={"iconX"} icon={faTimes} />
-        </button>
-        <input
-          className="inputWindow"
-          placeholder="Write your new todo"
-          value={inputValue}
-          onChange={(e) => {
-            setInputValue(e.target.value)
-          }}
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              addTodo()
+        <IonButton color="danger" className={"close-button"} onClick={setModalOpen.bind(null, false)}>X</IonButton>
+        <IonItem>
+          <IonLabel position="floating">Write your new todo here</IonLabel>
+          <IonInput 
+            value={inputValue} 
+            onIonChange={(e) => {
+              setInputValue(e.target.value)
+              }
             }
-          }}
-        />
-        <button className={inputValue.trim() ? "emptyAddModal" : "AddModal"} onClick={addTodo} disabled={!inputValue.trim()}>
-          Add todo
-        </button>
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                addTodo()
+              }
+            }}  
+          ></IonInput>
+        </IonItem>
+        <IonButton 
+          color="success"
+          className={inputValue.trim() 
+            ? "buttonAddEmptyModal" 
+            : "buttonAddFullModal"} 
+          onClick={addTodo} 
+          disabled={!inputValue.trim()}
+        >Add todo</IonButton>
+        {/* <button 
+          className={inputValue.trim() 
+          ? "emptyAddModal" 
+          : "AddModal"} 
+          onClick={addTodo} 
+          disabled={!inputValue.trim()}
+        >Add todo
+        </button> */}
       </div>
     </IonModal>
   )

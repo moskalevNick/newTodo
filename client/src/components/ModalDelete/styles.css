@@ -1,31 +1,17 @@
 .buttonsDelete {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 40px;    
-  }
-  
-.sure-button,
-.cancel-button {
-  justify-content: space-between;
-  margin: 10px;
-  color: var(--base-color-text);
-  height: 45px;
-  font-size: 150%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
 }
-
+  
 .titleModal{
   color: var(--base-color-text);
   text-align: center;
   padding-top: 95px;
   padding-bottom: 50px;  
 }
-
-.sure-button{
-  background-color: green;
-  border-radius: var(--border-radius);
-}
-
-.cancel-button{
-  background-color: red;
-  border-radius: var(--border-radius);
-}
+ 
+.buttonsDelete > .ion-color-danger,
+.buttonsDelete > .ion-color-success{
+  --ion-color-contrast: var(--base-color-text) !important;
+} 

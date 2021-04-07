@@ -27,6 +27,8 @@
   justify-self: end;
   --ion-color-primary: var(--base-color-nav);
   align-self: center;
+  height: 60px;
+  width: 60px;
 }
 
 .navBar > .button-solid{  

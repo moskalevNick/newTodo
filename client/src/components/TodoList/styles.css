@@ -6,4 +6,5 @@
   
   .noTodos {
     color: var(--base-color-text);
+    text-align: center;
   }

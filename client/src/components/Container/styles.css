@@ -33,3 +33,7 @@
 .stat{
   text-align: center;
 }
+.content > .ion-color-success,
+.stat > .ion-color-danger{
+  --ion-color-contrast: var(--base-color-text) !important;
+} 
