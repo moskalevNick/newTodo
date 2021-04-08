@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import Container from "./components/Container"
 import NavBar from "./components/NavBar"
+import Wether from "./components/wether"
 
 const App = () => {
   return (
@@ -20,6 +21,10 @@ const App = () => {
         
           <Route path="/checked">
             <Container type={"checked"}/>
+          </Route>
+
+          <Route path="/wether">
+            <Wether />
           </Route>
 
           <Redirect to="/" />
