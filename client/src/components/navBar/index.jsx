@@ -44,10 +44,10 @@ const NavBar = () => {
             Checked
           </NavLink>
           <NavLink 
-            to="/wether" 
+            to="/weather" 
             className="navBar_item" exact activeClassName="underline"
           >
-            Whether
+            Weather
           </NavLink>
         </div>
         <IonButton onClick={triggerNight} className="buttonChangeTheme">

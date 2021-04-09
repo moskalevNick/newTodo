@@ -1,0 +1,13 @@
+.containerCard{
+    height: 10%;
+}
+
+.head{
+    text-align: center;
+    color: var(--base-color-text)
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

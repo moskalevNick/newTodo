@@ -1,0 +1,5 @@
+.card{
+    text-align: center;
+    padding: 35px 0px;
+    color: var(--base-color-text);
+}
