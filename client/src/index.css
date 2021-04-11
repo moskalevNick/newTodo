@@ -32,3 +32,11 @@ body {
   display: none;
 }
 
+.autor{
+  position:relative;
+  text-align: right;
+}
+
+.autorLink {
+  color: var(--base-color-text);
+}

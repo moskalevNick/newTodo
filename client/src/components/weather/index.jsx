@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from "react"
-import Card from "./cards"
+import React, { useEffect, useMemo, useState } from "react"
+import Cards from "./cards"
 import "./styles.css"
-
-const weatherURL = process.env.REACT_APP_API_URL_WEATHER
+import Modal from "./Modal/index"
+import {IonButton} from "@ionic/react"
 
 const Weather = () => {
   
-  const timeOfDay = ["утро", "день", "вечер"]
+  const timeOfDay = ["morning", "afternoon", "evening"]
   const [apiData, setApiData] = useState({})
-    
+  const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
+  const [inputValue, setInputValue] = useState("")
+  const [city, setCity] = useState("minsk")
+   
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [city])
+  
+  const weatherURL = useMemo(() => {
+    return process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
+  }, [city])
+  
+  const changeCity = () => {
+    setCity(inputValue)
+    setModalChangeCityOpen(false)
+    setInputValue("")
+  }
 
   async function fetchData() {
     const responce = await fetch(weatherURL)
@@ -39,27 +52,72 @@ const Weather = () => {
   let currentArr = apiData.list.filter((el) => {
     return el.timeOfDay !== undefined   
   }) 
- 
+
+  currentArr.map((el) => {
+  if(new Date(el.dt_txt).toLocaleString("en", {day: 'numeric'}) 
+      === new Date().toLocaleString("en", {day: 'numeric'})){
+        el.todayOrTomorrow = "today"
+    } else if((+new Date(el.dt_txt).toLocaleString("en", {day: 'numeric'})) 
+      === +new Date().toLocaleString("en", {day: 'numeric'})+1){
+        el.todayOrTomorrow = "tomorrow"
+    } else if((+new Date(el.dt_txt).toLocaleString("en", {day: 'numeric'})) 
+      === +new Date().toLocaleString("en", {day: 'numeric'})+2){
+        el.todayOrTomorrow = "after tomorrow"
+    }
+    return currentArr
+  })
+
+  currentArr = apiData.list.filter((el) => {
+    return el.todayOrTomorrow !== undefined   
+  }) 
+
+  let todayArr = currentArr.filter((el) => {
+    return el.todayOrTomorrow === "today"  
+  }) 
+
+  let tomorrowArr = currentArr.filter((el) => {
+    return el.todayOrTomorrow === "tomorrow"  
+  }) 
+
+  let afterTomorrowArr = currentArr.filter((el) => {
+    return el.todayOrTomorrow === "after tomorrow"  
+  }) 
+
+  const trigerModalChangeCity = () => {
+    setModalChangeCityOpen((prev) => !prev)
+  }
+
   return ( 
     <div className={"containerCard"}>    
-      <h1 className={"head"}>Погода на 5 дней в Минске</h1> 
+      <div className={"header"}>
+        <h1>weather for 3 days in {city} city</h1>
+        <IonButton onClick={trigerModalChangeCity} color="primary" className={"buttonChange"}>change city</IonButton>
+      </div>
+      <div className={"timesOfDay"}>
+        <div></div>
+        <div>{timeOfDay[0]}</div>
+        <div>{timeOfDay[1]}</div>
+        <div>{timeOfDay[2]}</div>
+      </div>
       <div className={"cards"}> 
-        <Card apiData={currentArr[0]}/> 
-        <Card apiData={currentArr[1]}/>
-        <Card apiData={currentArr[2]}/>
-        <Card apiData={currentArr[3]}/>
-        <Card apiData={currentArr[4]}/>
-        <Card apiData={currentArr[5]}/>
-        <Card apiData={currentArr[6]}/>
-        <Card apiData={currentArr[7]}/>
-        <Card apiData={currentArr[8]}/>
-        <Card apiData={currentArr[9]}/>
-        <Card apiData={currentArr[10]}/>
-        <Card apiData={currentArr[11]}/>
-        <Card apiData={currentArr[12]}/>
-        <Card apiData={currentArr[13]}/>
-        <Card apiData={currentArr[14]}/>
+        <div className={"dayTitle"}>today</div>
+        <Cards apiData={todayArr}/>  
+      </div>
+      <div className={"cards"}>
+        <div className={"dayTitle"}>tomorrow</div>
+        <Cards apiData={tomorrowArr}/> 
+      </div>
+      <div className={"cards"}>
+        <div className={"dayTitle"}>after tomorrow</div>
+        <Cards apiData={afterTomorrowArr}/> 
       </div> 
+      <Modal
+        setModalChangeCityOpen={setModalChangeCityOpen}
+        isModalChangeCityOpen={isModalChangeCityOpen}
+        setInputValue={setInputValue}
+        inputValue={inputValue}
+        changeCity={changeCity}  
+       /> 
     </div> 
 	)
 }

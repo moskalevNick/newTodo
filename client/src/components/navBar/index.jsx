@@ -57,15 +57,7 @@ const NavBar = () => {
             size="2x"
           />
         </IonButton> 
-      </nav>
-      <div className="autor">
-        <a 
-          className="autorLink" 
-          href="https://www.linkedin.com/in/nickmoskalev/" 
-          target="_blank"
-          rel="noreferrer"
-        >ⓒMoskalevNick</a>
-      </div>  
+      </nav> 
     </div>  
 	)
 }
