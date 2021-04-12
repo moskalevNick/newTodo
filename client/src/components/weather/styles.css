@@ -1,3 +1,9 @@
+.containerCards{
+    height: calc(100vh - 210px);
+    overflow-y: auto;
+    width: auto;
+}
+
 .header{
     margin: auto;
     display: flex;

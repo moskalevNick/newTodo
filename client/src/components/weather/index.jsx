@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react"
-import Cards from "./cards"
+import Cards from "./Сards"
 import "./styles.css"
 import Modal from "./Modal/index"
 import {IonButton} from "@ionic/react"
@@ -89,7 +89,7 @@ const Weather = () => {
   }
 
   return ( 
-    <div className={"containerCard"}>    
+    <div>    
       <div className={"header"}>
         <h1>weather for 3 days in {city} city</h1>
         <IonButton onClick={trigerModalChangeCity} color="primary" className={"buttonChange"}>change city</IonButton>
@@ -100,17 +100,19 @@ const Weather = () => {
         <div>{timeOfDay[1]}</div>
         <div>{timeOfDay[2]}</div>
       </div>
-      <div className={"cards"}> 
-        <div className={"dayTitle"}>today</div>
-        <Cards apiData={todayArr}/>  
-      </div>
-      <div className={"cards"}>
-        <div className={"dayTitle"}>tomorrow</div>
-        <Cards apiData={tomorrowArr}/> 
-      </div>
-      <div className={"cards"}>
-        <div className={"dayTitle"}>after tomorrow</div>
-        <Cards apiData={afterTomorrowArr}/> 
+      <div className = {"containerCards"}>
+        <div className={"cards"}> 
+          <div className={"dayTitle"}>today</div>
+          <Cards apiData={todayArr}/>  
+        </div>
+        <div className={"cards"}>
+          <div className={"dayTitle"}>tomorrow</div>
+          <Cards apiData={tomorrowArr}/> 
+        </div>
+        <div className={"cards"}>
+          <div className={"dayTitle"}>after tomorrow</div>
+          <Cards apiData={afterTomorrowArr}/> 
+        </div>
       </div> 
       <Modal
         setModalChangeCityOpen={setModalChangeCityOpen}

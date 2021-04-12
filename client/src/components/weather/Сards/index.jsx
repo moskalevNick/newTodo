@@ -1,6 +1,6 @@
 import React from "react"
 import "./styles.css"
-import Card from "../card/index"
+import Card from "../Сard/index"
 
 
 const Cards = ({apiData}) => {
