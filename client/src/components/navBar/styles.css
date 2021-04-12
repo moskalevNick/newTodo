@@ -36,12 +36,3 @@
   --background-hover: 0;
 }
 
-.autor{
-  position:absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.autorLink {
-  color: var(--base-color-text);
-}

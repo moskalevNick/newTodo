@@ -1,0 +1,41 @@
+.header{
+    margin: auto;
+    display: flex;
+    width: fit-content;
+    color: var(--base-color-text);    
+    font-family: 'Franklin Gothic Medium';
+    color: var(--base-color-text);
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+}
+
+.dayTitle {
+    transform: rotate(-90deg);
+    align-self: center;
+    text-align: center;
+    font-size: 1.5em;
+    width: 166px;
+    margin-left: -70px;
+    color: var(--base-color-text);
+}
+
+.timesOfDay{
+    display: grid;
+    grid-template-columns:32px 1fr 1fr 1fr;
+    text-align: center;
+    font-size: 1.5em;
+    color: var(--base-color-text);
+}
+
+.header > .ion-color-primary {
+   --ion-color-contrast: var(--base-color-text) !important;
+}
+
+.buttonChange{
+    margin: auto;
+    margin-left: 15px;
+}

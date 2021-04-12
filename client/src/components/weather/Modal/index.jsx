@@ -3,13 +3,13 @@ import {IonModal, IonItem, IonLabel, IonInput, IonButton} from "@ionic/react"
 
 import "./styles.css"
 
-const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }) => {
+const Modal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputValue, inputValue, changeCity }) => {
   return (
-    <IonModal isOpen={isModalOpen} cssClass={"modal"}>
+    <IonModal isOpen={isModalChangeCityOpen} cssClass={"modal"}>
       <div className="openedModal">
-        <IonButton color="danger" className={"close-button"} onClick={setModalOpen.bind(null, false)}>X</IonButton>
+        <IonButton color="danger" className={"close-button"} onClick={setModalChangeCityOpen.bind(null, false)}>X</IonButton>
         <IonItem>
-          <IonLabel position="floating">Write your new todo here</IonLabel>
+          <IonLabel position="floating">Write your city here</IonLabel>
           <IonInput 
             value={inputValue} 
             onIonChange={(e) => {
@@ -18,19 +18,22 @@ const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }
             }
             onKeyPress={(event) => {
               if (event.key === "Enter") {
-                addTodo()
+                changeCity()
               }
             }}  
           ></IonInput>
         </IonItem>
+        <div className={"containerLink"}>
+          <a className={"exampleLink"} target={"_blank"} rel="noreferrer" href="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=53.9173&lon=27.5290&zoom=10">example</a>
+        </div>
         <IonButton 
           color="success"
           className={inputValue.trim() 
             ? "buttonAddEmptyModal" 
             : "buttonAddFullModal"} 
-          onClick={addTodo} 
+          onClick={changeCity} 
           disabled={!inputValue.trim()}
-        >Add todo</IonButton>
+        >Change</IonButton>
       </div>
     </IonModal>
   )

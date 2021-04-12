@@ -1,0 +1,8 @@
+.card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    padding: 15px 0px;
+    color: var(--base-color-text);
+}
+
