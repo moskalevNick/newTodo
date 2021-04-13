@@ -3,25 +3,15 @@ import "./styles.css"
 import Card from "../Сard/index"
 
 
-const Cards = ({apiData}) => {
-
-  let morningCard, afternoonCard, eveningCard 
-  
-  apiData.forEach(el => {
-    if(el.timeOfDay === "morning"){
-      morningCard = el
-    }else if(el.timeOfDay === "afternoon"){
-      afternoonCard = el
-    }else if(el.timeOfDay === "evening"){
-      eveningCard = el   
-    }  
-  });
+const Cards = ( { data } ) => {
 
   return (     
     <div className={"card"}>
-      <Card card={morningCard}/> 
-      <Card card={afternoonCard}/>
-      <Card card={eveningCard}/>
+      {
+        data.map( ( el, index ) => (
+          <Card card={ el } key={ index }/>
+        ) ) 
+      }  
     </div>  
 	)
 } 

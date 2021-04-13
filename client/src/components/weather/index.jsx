@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Cards from "./Сards"
 import "./styles.css"
 import Modal from "./Modal/index"
@@ -6,83 +6,87 @@ import {IonButton} from "@ionic/react"
 
 const Weather = () => {
   
-  const timeOfDay = ["morning", "afternoon", "evening"]
-  
-  const [apiData, setApiData] = useState({})
   const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
   const [inputValue, setInputValue] = useState("")
   const [city, setCity] = useState("minsk")
-   
+  const [weatherByDays, setWeatherByDays] = useState ({
+    today: [],
+    tomorrow: [],
+    afterTomorrow: []
+  })
+  
   useEffect(() => {
     fetchData()
   }, [city])
-  
-  const weatherURL = useMemo(() => {
-    return process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
-  }, [city])
-  
+
   const changeCity = () => {
     setCity(inputValue)
     setModalChangeCityOpen(false)
     setInputValue("")
   }
-
+      
   async function fetchData() {
+    const weatherURL = process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
     const responce = await fetch(weatherURL)
     const data = await responce.json()
-    setApiData(data)
+    if(data)  setDates(data)
   }
 
-  if(!apiData.list){
-    return null
-  }
+  function setDates(data) {
+    const nowDate = new Date();
 
-  apiData.list.map((el) => {
-    if(el.dt_txt.includes("9:00:00")){
-      el.timeOfDay = timeOfDay[0]
+    const todayDate = `${
+      nowDate.getFullYear()
+    }-${
+      ( ( nowDate.getMonth() + 1 ) < 10 ) ? `0${ nowDate.getMonth() + 1 }` : nowDate.getMonth() + 1
+    }-${
+      ( nowDate.getDate() < 10 ) ? `0${ nowDate.getDate() }` : nowDate.getDate()
+    }`
+
+    const tomorrowDate = `${
+      nowDate.getFullYear()
+    }-${
+      ( ( nowDate.getMonth() + 1 ) < 10 ) ? `0${ nowDate.getMonth() + 1 }` : nowDate.getMonth() + 1
+    }-${
+      ( ( nowDate.getDate() + 1 ) < 10 ) ? `0${ nowDate.getDate() + 1 }` : nowDate.getDate() + 1
+    }`
+
+    const afterTomorrowDate = `${
+      nowDate.getFullYear()
+    }-${
+      ( ( nowDate.getMonth() + 1 ) < 10 ) ? `0${ nowDate.getMonth() + 1 }` : nowDate.getMonth() + 1
+    }-${
+      ( ( nowDate.getDate() + 2 ) < 10) ? `0${ nowDate.getDate() + 2 }` : nowDate.getDate() + 2
+    }`
+
+  const today = []
+  const tomorrow = []
+  const afterTomorrow = []
+
+  data && data.list && data.list.forEach( el => {
+    if (
+      el.dt_txt.includes( '9:00:00' ) ||
+      el.dt_txt.includes( '15:00:00' ) ||
+      el.dt_txt.includes( '21:00:00' )
+    ) {
+      if ( el.dt_txt.includes( todayDate ) ) today.push( el )
+      if ( el.dt_txt.includes( tomorrowDate ) ) tomorrow.push( el )
+      if ( el.dt_txt.includes( afterTomorrowDate ) ) afterTomorrow.push( el )
     }
-    if(el.dt_txt.includes("15:00:00")){
-      el.timeOfDay = timeOfDay[1]
-    }
-    if(el.dt_txt.includes("21:00:00")){
-      el.timeOfDay = timeOfDay[2]
-    }
-    return apiData.list
-  })
+  } );
 
-  let currentArr = apiData.list.filter((el) => {
-    return el.timeOfDay !== undefined   
-  }) 
+  if (today.length === 1) {
+    today.unshift( null )
+    today.unshift( null )
+  }  
+  
+  if (today.length === 2) {
+    today.unshift( null )
+  }  
 
-  currentArr.map((el) => {
-  if(new Date(el.dt_txt).toLocaleString("en", {day: 'numeric'}) 
-      === new Date().toLocaleString("en", {day: 'numeric'})){
-        el.todayOrTomorrow = "today"
-    } else if((+new Date(el.dt_txt).toLocaleString("en", {day: 'numeric'})) 
-      === +new Date().toLocaleString("en", {day: 'numeric'})+1){
-        el.todayOrTomorrow = "tomorrow"
-    } else if((+new Date(el.dt_txt).toLocaleString("en", {day: 'numeric'})) 
-      === +new Date().toLocaleString("en", {day: 'numeric'})+2){
-        el.todayOrTomorrow = "after tomorrow"
-    }
-    return currentArr
-  })
+  setWeatherByDays( { today, tomorrow, afterTomorrow } )
 
-  currentArr = apiData.list.filter((el) => {
-    return el.todayOrTomorrow !== undefined   
-  }) 
-
-  let todayArr = currentArr.filter((el) => {
-    return el.todayOrTomorrow === "today"  
-  }) 
-
-  let tomorrowArr = currentArr.filter((el) => {
-    return el.todayOrTomorrow === "tomorrow"  
-  }) 
-
-  let afterTomorrowArr = currentArr.filter((el) => {
-    return el.todayOrTomorrow === "after tomorrow"  
-  }) 
+}
 
   const trigerModalChangeCity = () => {
     setModalChangeCityOpen((prev) => !prev)
@@ -92,26 +96,32 @@ const Weather = () => {
     <div>    
       <div className={"header"}>
         <h1>weather for 3 days in {city} city</h1>
-        <IonButton onClick={trigerModalChangeCity} color="primary" className={"buttonChange"}>change city</IonButton>
+        <IonButton 
+          onClick={trigerModalChangeCity} 
+          color="primary" 
+          className={"buttonChange"}
+        >
+          change city
+        </IonButton>
       </div>
       <div className={"timesOfDay"}>
         <div></div>
-        <div>{timeOfDay[0]}</div>
-        <div>{timeOfDay[1]}</div>
-        <div>{timeOfDay[2]}</div>
+        <div>morning</div>
+        <div>afternoon</div>
+        <div>evening</div>
       </div>
       <div className = {"containerCards"}>
         <div className={"cards"}> 
           <div className={"dayTitle"}>today</div>
-          <Cards apiData={todayArr}/>  
+          <Cards data={weatherByDays.today}/>  
         </div>
         <div className={"cards"}>
           <div className={"dayTitle"}>tomorrow</div>
-          <Cards apiData={tomorrowArr}/> 
+          <Cards data={weatherByDays.tomorrow}/> 
         </div>
         <div className={"cards"}>
           <div className={"dayTitle"}>after tomorrow</div>
-          <Cards apiData={afterTomorrowArr}/> 
+          <Cards data={weatherByDays.afterTomorrow}/> 
         </div>
       </div> 
       <Modal
