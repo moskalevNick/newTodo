@@ -1,4 +1,4 @@
-import { SET_TODOS, CHANGE_THEME } from "./types"
+import { SET_TODOS, CHANGE_THEME, SET_WEATHER } from "./types"
 
 const uri = process.env.REACT_APP_API_URL
 
@@ -18,7 +18,6 @@ export const setTodos = () => {
     });   
   };
 };
-
 
 export const removeTodo = (id) => {
   return async dispatch => {
@@ -88,4 +87,16 @@ export const removeAllChecked = () => {
       payload : data
   	}); 
 	}
+}
+
+export const fetchData = (city) => {
+  const weatherURL = process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
+  return async dispatch => {
+    const responce = await fetch(weatherURL)
+    const data = await responce.json()
+    dispatch({
+      type : SET_WEATHER,
+      payload : data
+    })  
+  }
 }

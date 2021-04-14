@@ -14,11 +14,6 @@
     text-align: center;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: 30px 1fr;
-}
-
 .dayTitle {
     transform: rotate(-90deg);
     align-self: center;
@@ -29,12 +24,59 @@
     color: var(--base-color-text);
 }
 
-.timesOfDay{
+.weatherContainer{
     display: grid;
-    grid-template-columns:32px 1fr 1fr 1fr;
+    grid-template-areas: ". morning afternoon evening"
+                         "today card card card"
+                         "tomorrow card card card"
+                         "afterTomorrow card card card";
     text-align: center;
-    font-size: 1.5em;
     color: var(--base-color-text);
+    margin: 20px;
+}
+
+.morning {
+    grid-area: morning;
+    width: 100px;
+    margin: auto;
+}
+
+.afternoon {
+    grid-area: afternoon;
+    width: 100px;
+    margin: auto;
+}
+
+.evening {
+    grid-area: evening;
+    width: 100px;
+    margin: auto;
+}
+
+.today {
+    grid-area: today;
+    width: 100px;
+
+}
+
+.tomorrow {
+    grid-area: tomorrow;
+    width: 100px;
+}
+
+.afterTomorrow {
+    grid-area: afterTomorrow;
+    width: 100px;
+}
+
+.card {
+    grid-area: card;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.today, .tomorrow, .afterTomorrow {
+    transform: rotate(90deg);
 }
 
 .header > .ion-color-primary {

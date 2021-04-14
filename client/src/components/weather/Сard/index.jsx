@@ -3,7 +3,7 @@ import "./styles.css"
 
 const Card = ( { card } ) => {
   
-  if(!card) return <div/>
+  if(!card) return <div className={"cardItem"}/>
 
   return ( 
     <div className={"cardItem"}> 

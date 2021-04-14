@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react"
-import Cards from "./Сards"
-import "./styles.css"
-import Modal from "./Modal/index"
+import {useDispatch, useSelector} from 'react-redux'
 import {IonButton} from "@ionic/react"
 
+import Card from "./Сard/index"
+import "./styles.css"
+import Modal from "./Modal/index"
+import { fetchData } from '../../redux/actions'
+
 const Weather = () => {
-  
+  const dispatch = useDispatch()
+  const { weather } = useSelector(state => state)
+
   const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
   const [inputValue, setInputValue] = useState("")
   const [city, setCity] = useState("minsk")
@@ -14,23 +19,20 @@ const Weather = () => {
     tomorrow: [],
     afterTomorrow: []
   })
-  
-  useEffect(() => {
-    fetchData()
-  }, [city])
 
   const changeCity = () => {
     setCity(inputValue)
     setModalChangeCityOpen(false)
     setInputValue("")
   }
-      
-  async function fetchData() {
-    const weatherURL = process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
-    const responce = await fetch(weatherURL)
-    const data = await responce.json()
-    if(data)  setDates(data)
-  }
+  
+  useEffect(() => {
+    dispatch(fetchData(city))   
+  }, [dispatch, city])
+
+  useEffect(() => {   
+    setDates(weather) 
+  }, [weather])
 
   function setDates(data) {
     const nowDate = new Date();
@@ -104,26 +106,19 @@ const Weather = () => {
           change city
         </IonButton>
       </div>
-      <div className={"timesOfDay"}>
-        <div></div>
-        <div>morning</div>
-        <div>afternoon</div>
-        <div>evening</div>
+      <div className={"weatherContainer"}>
+        <div className={"morning"}>morning</div>
+        <div className={"afternoon"}>afternoon</div>
+        <div className={"evening"}>evening</div>
+        <div className={"today"}>today</div>
+        <div className={"tomorrow"}>tomorrow</div>
+        <div className={"afterTomorrow"}>after tomorrow</div>
+        <div className={"card"}>{
+          [...weatherByDays.today, ...weatherByDays.tomorrow, ...weatherByDays.afterTomorrow].map( ( el, index ) => (
+            <Card card={ el } key={ index }/>
+          ) ) 
+        }</div>
       </div>
-      <div className = {"containerCards"}>
-        <div className={"cards"}> 
-          <div className={"dayTitle"}>today</div>
-          <Cards data={weatherByDays.today}/>  
-        </div>
-        <div className={"cards"}>
-          <div className={"dayTitle"}>tomorrow</div>
-          <Cards data={weatherByDays.tomorrow}/> 
-        </div>
-        <div className={"cards"}>
-          <div className={"dayTitle"}>after tomorrow</div>
-          <Cards data={weatherByDays.afterTomorrow}/> 
-        </div>
-      </div> 
       <Modal
         setModalChangeCityOpen={setModalChangeCityOpen}
         isModalChangeCityOpen={isModalChangeCityOpen}
