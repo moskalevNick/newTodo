@@ -52,3 +52,10 @@
 .containerLink{
   text-align: right;
 }
+
+.invalidCity{
+  color: #e20000;
+  text-align: left;
+  width: 220px;
+  position: absolute;
+}

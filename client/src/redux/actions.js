@@ -92,11 +92,18 @@ export const removeAllChecked = () => {
 export const fetchData = (city) => {
   const weatherURL = process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
   return async dispatch => {
-    const responce = await fetch(weatherURL)
-    const data = await responce.json()
-    dispatch({
-      type : SET_WEATHER,
-      payload : data
-    })  
+    try {
+      const responce = await fetch(weatherURL)
+      const data = await responce.json()
+      if ( data.cod === '404' ) {
+        
+      }
+      dispatch({
+        type : SET_WEATHER,
+        payload : data
+      })
+    }catch(e){
+      console.log('error');
+    }  
   }
 }

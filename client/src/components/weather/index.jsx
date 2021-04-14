@@ -12,6 +12,7 @@ const Weather = () => {
   const { weather } = useSelector(state => state)
 
   const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
+  const [isCityValid, setCityValid] = useState(true)
   const [inputValue, setInputValue] = useState("")
   const [city, setCity] = useState("minsk")
   const [weatherByDays, setWeatherByDays] = useState ({
@@ -22,7 +23,6 @@ const Weather = () => {
 
   const changeCity = () => {
     setCity(inputValue)
-    setModalChangeCityOpen(false)
     setInputValue("")
   }
   
@@ -31,7 +31,13 @@ const Weather = () => {
   }, [dispatch, city])
 
   useEffect(() => {   
-    setDates(weather) 
+    setDates( weather ) 
+    if ( weather.cod === '200' ) {
+      setModalChangeCityOpen( false )
+      setCityValid( true )
+    } else {
+      setCityValid( false )  
+    }
   }, [weather])
 
   function setDates(data) {
@@ -124,8 +130,9 @@ const Weather = () => {
         isModalChangeCityOpen={isModalChangeCityOpen}
         setInputValue={setInputValue}
         inputValue={inputValue}
-        changeCity={changeCity}  
-       /> 
+        changeCity={changeCity}
+        isCityValid={isCityValid}
+      /> 
     </div> 
 	)
 }
