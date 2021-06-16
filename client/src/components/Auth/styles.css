@@ -1,0 +1,6 @@
+@import "../../index.css";
+
+.loginContainer {
+    width: 500px;
+    margin: 27vh auto;
+}

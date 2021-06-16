@@ -23,15 +23,27 @@
   text-decoration: underline;
 }
 
+.containerButtonChangeTheme{
+  position: absolute;
+  right: 0;
+}
+
+.buttonAuth{
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  height: 60px;
+  width: 60px;
+}
+
 .buttonChangeTheme {
-  justify-self: end;
   --ion-color-primary: var(--base-color-nav);
   align-self: center;
   height: 60px;
   width: 60px;
 }
 
-.navBar > .button-solid{  
+.navBar > .containerButtonChangeTheme > .button-solid{  
   --box-shadow: 0;
   --background-hover: 0;
 }

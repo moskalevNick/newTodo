@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {IonButton} from "@ionic/react"
 
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
+import { faMoon, faSun, faUserCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./styles.css"
 import {changeTheme} from '../../redux/actions'
@@ -50,6 +50,14 @@ const NavBar = () => {
             Weather
           </NavLink>
         </div>
+        <div className="containerButtonChangeTheme">
+          <NavLink to="/auth" className="buttonAuth">
+          <FontAwesomeIcon 
+            className={"icon"} 
+            icon = {faUserCircle} 
+            size="2x"
+          />
+        </NavLink>
         <IonButton onClick={triggerNight} className="buttonChangeTheme">
           <FontAwesomeIcon 
             className={"icon"} 
@@ -57,6 +65,8 @@ const NavBar = () => {
             size="2x"
           />
         </IonButton> 
+        </div>
+        
       </nav> 
     </div>  
 	)

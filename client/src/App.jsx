@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Container from "./components/Container"
 import NavBar from "./components/NavBar"
 import Weather from "./components/Weather"
+import Auth from "./components/Auth"
 
 const App = () => {
   return (
@@ -25,6 +26,10 @@ const App = () => {
 
           <Route path="/weather">
             <Weather />
+          </Route>
+
+          <Route path="/auth">
+            <Auth />
           </Route>
 
           <Redirect to="/" />
