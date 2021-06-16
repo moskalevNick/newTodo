@@ -5,6 +5,7 @@ import Container from "./components/Container"
 import NavBar from "./components/NavBar"
 import Weather from "./components/Weather"
 import Auth from "./components/Auth"
+import Registration from "./components/Registration"
 
 const App = () => {
   return (
@@ -30,6 +31,10 @@ const App = () => {
 
           <Route path="/auth">
             <Auth />
+          </Route>
+
+          <Route path="/registration">
+            <Registration />
           </Route>
 
           <Redirect to="/" />

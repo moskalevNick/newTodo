@@ -2,15 +2,23 @@ import React from "react"
 import {IonButton, IonCheckbox, IonLabel, IonItem, IonInput, IonRouterLink} from "@ionic/react"
 import "./styles.css"
 
-const Auth = () => {
-	return (
-    <div className="loginContainer">
+const Registration = () => {
+	return ( 
+    <div className="registrContainer">
       <IonItem >
-        <IonLabel className="ionItem" position="floating">Username</IonLabel>
+        <IonLabel className="ionItem" position="floating">Email</IonLabel>
+        <IonInput />
+      </IonItem>
+      <IonItem >
+        <IonLabel className="ionItem" position="floating">Name</IonLabel>
         <IonInput />
       </IonItem>
       <IonItem>
         <IonLabel position="floating">Password</IonLabel>
+        <IonInput type="password" />
+      </IonItem>
+      <IonItem>
+        <IonLabel position="floating">Replace password</IonLabel>
         <IonInput type="password" />
       </IonItem>
       <IonItem lines="none">
@@ -18,12 +26,12 @@ const Auth = () => {
         <IonCheckbox defaultChecked={true} slot="start" />
       </IonItem>
       <IonButton className="ion-margin-top" type="submit" expand="block">
-        Login
+        Registration
       </IonButton>
       <div className="noAcc">
-        <IonRouterLink color="secondary" href='/registration'>I don't have an account</IonRouterLink>
+        <IonRouterLink color="secondary" href='/auth'>I have an account</IonRouterLink>
       </div>
     </div>    
   )}
 
-export default Auth
+export default Registration
