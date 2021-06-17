@@ -1,23 +1,21 @@
-const mongoose = require("mongoose")
-const express = require("express")
-const app = express()
 const cors = require("cors")
-const bodyParser = require("body-parser")
-const { Schema, model } = require("mongoose")
+const express = require("express")
 const { config } = require("dotenv")
-config()
+const mongoose = require("mongoose")
+const bodyParser = require("body-parser")
+const router = require ('./router/index')
+const Todo = require('./models/todo-model')
+const cookieParser = require('cookie-parser')
 
+const app = express()
 const PORT = process.env.PORT || 7000
 
-const schema = new Schema({
-  todo: { type: String, required: true },
-  important: { type: Boolean, required: true },
-  checked: { type: Boolean, required: true },
-})
-const Todo = model("Todo", schema)
-
+config()
 app.use(cors())
+app.use(cookieParser())
+app.use('/api', router)
 app.use(bodyParser.json())
+mongoose.set('useCreateIndex', true);
 
 app.get("/", async (req, res) => {
   const todos = await Todo.find({})
@@ -56,11 +54,9 @@ app.delete("/:id", async (req, res) => {
 app.delete("/", async (req, res) => {
   const allTodos = await Todo.find({})
   const checkedTodos = allTodos.filter((todo) => todo.checked === true)
-
   for (const todo of checkedTodos) {
     await Todo.findByIdAndRemove(todo._id)
   }
-
   const todos = await Todo.find({})
   res.json(todos)
 })
