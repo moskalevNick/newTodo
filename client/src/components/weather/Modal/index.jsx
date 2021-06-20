@@ -27,7 +27,7 @@ const Modal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputValue, i
           !isCityValid && <div className={"invalidCity"}>invalid city</div>
         }
         <div className={"containerLink"}>
-          <a className={"exampleLink"} target={"_blank"} rel="noreferrer" href="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=53.9173&lon=27.5290&zoom=10">example</a>
+          <a className={"exampleLink"} target={"_blank"} rel="noreferrer" href="http://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=53.9173&lon=27.5290&zoom=10">example</a>
         </div>
         <IonButton 
           color="success"

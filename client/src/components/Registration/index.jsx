@@ -1,5 +1,5 @@
 import React from "react"
-import {IonButton, IonCheckbox, IonLabel, IonItem, IonInput, IonRouterLink} from "@ionic/react"
+import {IonButton, IonLabel, IonItem, IonInput, IonRouterLink} from "@ionic/react"
 import "./styles.css"
 
 const Registration = () => {
@@ -20,10 +20,6 @@ const Registration = () => {
       <IonItem>
         <IonLabel position="floating">Replace password</IonLabel>
         <IonInput type="password" />
-      </IonItem>
-      <IonItem lines="none">
-        <IonLabel>Remember me</IonLabel>
-        <IonCheckbox defaultChecked={true} slot="start" />
       </IonItem>
       <IonButton className="ion-margin-top" type="submit" expand="block">
         Registration

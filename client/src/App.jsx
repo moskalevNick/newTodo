@@ -42,7 +42,7 @@ const App = () => {
         <footer className={"autor"}>
         <a 
           className="autorLink" 
-          href="https://www.linkedin.com/in/nickmoskalev/" 
+          href="http://www.linkedin.com/in/nickmoskalev/" 
           target="_blank"
           rel="noreferrer"
         >ⓒMoskalevNick</a>

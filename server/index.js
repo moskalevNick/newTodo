@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
 const router = require ('./router/index')
 const Todo = require('./models/todo-model')
 const cookieParser = require('cookie-parser')
+const errorMiddleware = require('./middlewares/error-middleware')
 
 const app = express()
 const PORT = process.env.PORT || 7000
@@ -16,6 +17,7 @@ app.use(cookieParser())
 app.use('/api', router)
 app.use(bodyParser.json())
 mongoose.set('useCreateIndex', true);
+app.use(errorMiddleware)
 
 app.get("/", async (req, res) => {
   const todos = await Todo.find({})
@@ -63,7 +65,7 @@ app.delete("/", async (req, res) => {
 
 app.listen(PORT, async () => {
   try {
-    await mongoose.connect("mongodb+srv://keks:22101995Kolya@cluster0.o9t1k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
+    await mongoose.connect(process.env.DB_url , { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
     console.log(`server start at ${PORT}`)
   } catch (e) {
     console.log(e)
