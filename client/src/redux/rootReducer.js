@@ -1,9 +1,10 @@
-import { SET_TODOS, CHANGE_THEME, SET_WEATHER } from "./types"
+import { SET_TODOS, CHANGE_THEME, SET_WEATHER, REG_USER } from "./types"
 
 const initialState = {
     themeIsDay : true,
     todos : [],
-    weather : {}
+    weather : {},
+    regUsers : []
 }
 
 export default function rootReducer(state = initialState, action){
@@ -21,6 +22,10 @@ export default function rootReducer(state = initialState, action){
     
     if (action.type === SET_WEATHER) {
         return { ...state, weather : action.payload } 
+    }
+
+    if (action.type === REG_USER) {
+        return { ...state, regUsers : action.payload } 
     }
 
     return state

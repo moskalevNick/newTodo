@@ -10,22 +10,25 @@ import Registration from "./components/Registration"
 const App = () => {
   return (
     <Router>
-      <div className="container">
-        <NavBar />
+      <div className="container">     
         <Switch>       
           <Route path="/" exact>
+            <NavBar />
             <Container type={"main"}/>
           </Route>
         
           <Route path="/important">
+            <NavBar />
             <Container type={"important"}/>
           </Route>
         
           <Route path="/checked">
+            <NavBar />
             <Container type={"checked"}/>
           </Route>
 
           <Route path="/weather">
+            <NavBar />
             <Weather />
           </Route>
 

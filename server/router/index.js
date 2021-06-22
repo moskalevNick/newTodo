@@ -10,7 +10,8 @@ router.use(bodyParser.json())
 router.post('/registration', 
     body('email').isEmail(),
     body('password').isLength({min: 8, max: 32}),
-    UserController.registration)
+    UserController.registration
+)
 router.post('/login', UserController.login)
 router.post('/logout', UserController.logout)
 router.get('/activate/:Link', UserController.activate)

@@ -1,4 +1,4 @@
-import { SET_TODOS, CHANGE_THEME, SET_WEATHER } from "./types"
+import { SET_TODOS, CHANGE_THEME, SET_WEATHER, REG_USER } from "./types"
 
 const uri = process.env.REACT_APP_API_URL
 
@@ -107,3 +107,48 @@ export const fetchData = (city) => {
     }  
   }
 }
+
+export const registrationUser = ( user ) => {
+  return async dispatch => {
+    const response = await fetch(`${uri}/api/registration`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+    const data = await response.json()
+    dispatch({
+      type : REG_USER,
+     payload : data
+  	});  
+  };
+};
+
+export const loginUser = ( user ) => {
+  return async () => {
+    const response = await fetch(`${uri}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+    const data = await response.json()
+    localStorage.setItem('token', data.accessToken)
+  };
+};
+
+export const logout = () => {
+  return async () => {
+    await fetch(`${uri}/api/logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    })
+  };
+};
