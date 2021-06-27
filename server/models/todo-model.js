@@ -1,9 +1,10 @@
-const { Schema, model } = require("mongoose")
+const {Schema, model} = require('mongoose');
 
-const schema = new Schema({
-    todo: { type: String, required: true },
+const TodoSchema = new Schema({
+    userId: {type: Schema.Types.ObjectId, ref: 'User'},
+    title: { type: String, required: true },
     important: { type: Boolean, required: true },
-    checked: { type: Boolean, required: true },
-  })
+    checked: { type: Boolean, required: true }
+})
 
-module.exports = model("Todo", schema)
+module.exports = model('Todo', TodoSchema);

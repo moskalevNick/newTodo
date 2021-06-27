@@ -19,11 +19,11 @@ const Container = ({type="main"}) => {
   
   const dispatch = useDispatch()
   const { todos } = useSelector(state => state)
-    
+
   useEffect(() => {
-    const checked = todos.filter((todo) => todo.checked === true)
-    setCheckedTodo((checked.length / todos.length) * 100)
-    setAmount(todos.length)
+    const checked = todos.data.filter((todo) => todo.checked === true)
+    setCheckedTodo((checked.length / todos.data.length) * 100)
+    setAmount(todos.data.length)
   }, [todos])
 
   useEffect(() => {
@@ -32,15 +32,14 @@ const Container = ({type="main"}) => {
 
   const currentTodos = useMemo(() => {
     if (type === "important") {
-      return todos.filter((todo) => todo.important === true)  
+      return todos.data.filter((todo) => todo.important === true)  
     } else if (type === "checked") {
-      return todos.filter((todo) => todo.checked === true) 
+      return todos.data.filter((todo) => todo.checked === true) 
     } else {
-      return todos
+      return todos.data
     }
   }, [todos, type])
     
-
 	const triggerModal = () => {
     setModalOpen((prev) => !prev)
   }
@@ -55,7 +54,7 @@ const Container = ({type="main"}) => {
   }
 
 	const addNewTodo = () => {
-    dispatch(addTodo( { todo: inputValue, important: false, checked: false } ))
+    dispatch(addTodo(inputValue))
     setModalOpen(false)
     setInputValue("")
   }

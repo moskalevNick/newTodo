@@ -3,22 +3,22 @@ import { NavLink } from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {IonButton} from "@ionic/react"
 
-import { faMoon, faSun, faUserCircle } from "@fortawesome/free-solid-svg-icons"
+import { faMoon, faSun, faSignInAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./styles.css"
-import {changeTheme} from '../../redux/actions'
+import {changeTheme, logout} from '../../redux/actions'
 
 const NavBar = () => {
   
   const dispatch = useDispatch()
-  const { themeIsDay } = useSelector(state => state)
+  const { themeIsDay, user } = useSelector(state => state)
 
   useEffect(() => {
     document.body.setAttribute('color-theme', themeIsDay ? "light" : "dark")
   }, [themeIsDay]) 
 
   const triggerNight = () => {
-    dispatch(changeTheme())   
+    dispatch(changeTheme(!themeIsDay))   
   }  
 
   return (
@@ -50,11 +50,12 @@ const NavBar = () => {
             Weather
           </NavLink>
         </div>
+        <p>{user.email}</p>
         <div className="containerButtonChangeTheme">
-          <NavLink to="/auth" className="buttonAuth">
+          <NavLink to='/auth' className="buttonAuth" onClick={() => dispatch(logout())}>
           <FontAwesomeIcon 
             className={"icon"} 
-            icon = {faUserCircle} 
+            icon = {faSignInAlt} 
             size="2x"
           />
         </NavLink>

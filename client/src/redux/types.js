@@ -1,3 +1,6 @@
 export const CHANGE_THEME = 'CHANGE_THEME'
 export const SET_TODOS = 'SET_TODOS'
 export const SET_WEATHER = 'SET_WEATHER'
+export const SET_AUTH = 'SET_AUTH'
+export const SET_USER = 'SET_USER'
+export const SET_LOADING = 'SET_LOADING'

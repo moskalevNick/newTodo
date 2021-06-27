@@ -26,7 +26,7 @@ const TodoItem = ( {element, changeTodo, triggerModalDelete} ) => {
 				className={ todoNames }  
 				onClick={ changeTodo.bind(null, element._id, "important") }
 			>
-        { element.todo }
+        { element.title }
       </div>
       <IonButton 
         className={"deleteButton"} 

@@ -4,9 +4,16 @@
   margin-top: 20px;
   margin-bottom: 40px;
 } 
+
 .openedModal > .ion-color-danger{
   --ion-color-contrast: var(--base-color-text) !important;
 }   
+
+.openedModal > .sc-ion-modal-md-h {
+  --width: 400px !important; 
+  --height: 300px !important;
+  --border-radius: 5px !important;
+}
 
 .openedModal > .ion-color-success{
   --ion-color-contrast: var(--base-color-text) !important;
