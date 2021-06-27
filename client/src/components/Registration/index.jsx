@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {useDispatch} from 'react-redux'
 import {IonButton, IonLabel, IonItem, IonInput, IonRouterLink} from "@ionic/react"
 import "./styles.css"
-import {registrationUser} from '../../redux/actions'
+import {registration} from '../../redux/actions'
 
 const Registration = () => {
 	const [inputEmailValue, setInputEmailValue] = useState("")
@@ -13,7 +13,7 @@ const Registration = () => {
  
   const cardOfUser = () => {
     if(inputPasswordValue === inputReplacePasswordValue){
-      dispatch(registrationUser( { email: inputEmailValue, password: inputPasswordValue } ))
+      dispatch(registration( { email: inputEmailValue, password: inputPasswordValue } ))
       setInputEmailValue('')
       setInputPasswordValue('')
       setInputReplacePasswordValue('')

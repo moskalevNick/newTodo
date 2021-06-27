@@ -3,11 +3,7 @@ import { NavLink } from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {IonButton} from "@ionic/react"
 
-<<<<<<< HEAD
 import { faMoon, faSun, faSignInAlt } from "@fortawesome/free-solid-svg-icons"
-=======
-import { faMoon, faSun, faUserCircle, faSignOutAlt } from "@fortawesome/free-solid-svg-icons"
->>>>>>> 5838a3fde47a05a2fe41db034bc2b0dc5085ba63
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./styles.css"
 import {changeTheme, logout} from '../../redux/actions'
@@ -24,13 +20,6 @@ const NavBar = () => {
   const triggerNight = () => {
     dispatch(changeTheme(!themeIsDay))   
   }  
-
-  const logoutUser = () => {
-    if (localStorage.getItem('token')){
-      dispatch(logout())
-      localStorage.removeItem('token')
-    }  
-  }
 
   return (
     <div>  
@@ -63,17 +52,10 @@ const NavBar = () => {
         </div>
         <p>{user.email}</p>
         <div className="containerButtonChangeTheme">
-<<<<<<< HEAD
           <NavLink to='/auth' className="buttonAuth" onClick={() => dispatch(logout())}>
           <FontAwesomeIcon 
             className={"icon"} 
             icon = {faSignInAlt} 
-=======
-          <NavLink to="/auth" onClick={logoutUser} className="buttonAuth">
-          <FontAwesomeIcon 
-            className={"icon"} 
-            icon = { localStorage.getItem('token') ? faSignOutAlt : faUserCircle } 
->>>>>>> 5838a3fde47a05a2fe41db034bc2b0dc5085ba63
             size="2x"
           />
         </NavLink>

@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import axios from 'axios';
-=======
-import { SET_TODOS, CHANGE_THEME, SET_WEATHER, REG_USER } from "./types"
->>>>>>> 5838a3fde47a05a2fe41db034bc2b0dc5085ba63
-
 import { SET_TODOS, CHANGE_THEME, SET_WEATHER, SET_LOADING, SET_AUTH, SET_USER } from "./types"
 import AuthService from "../services/AuthService";
 import TodoService from '../services/TodoService';
+import axios from 'axios'
 
 export const changeTheme = (value) => ({
   type: CHANGE_THEME,
@@ -153,48 +148,3 @@ export const checkAuth = () => async dispatch => {
     dispatch(setLoading(false))
   }
 }
-
-export const registrationUser = ( user ) => {
-  return async dispatch => {
-    const response = await fetch(`${uri}/api/registration`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-    const data = await response.json()
-    dispatch({
-      type : REG_USER,
-     payload : data
-  	});  
-  };
-};
-
-export const loginUser = ( user ) => {
-  return async () => {
-    const response = await fetch(`${uri}/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-    const data = await response.json()
-    localStorage.setItem('token', data.accessToken)
-  };
-};
-
-export const logout = () => {
-  return async () => {
-    await fetch(`${uri}/api/logout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }
-    })
-  };
-};
