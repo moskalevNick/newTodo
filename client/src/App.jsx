@@ -9,6 +9,7 @@ import Weather from "./components/Weather"
 import Auth from "./components/Auth"
 import Registration from "./components/Registration"
 
+<<<<<<< HEAD
 const App = () => {   
   const dispatch = useDispatch()
   const { isAuth, isLoading } = useSelector(state => state)
@@ -75,3 +76,54 @@ const App = () => {
 };
 
 export default App;
+=======
+const App = () => {
+  return (
+    <Router>
+      <div className="container">     
+        <Switch>       
+          <Route path="/" exact>
+            <NavBar />
+            <Container type={"main"}/>
+          </Route>
+        
+          <Route path="/important">
+            <NavBar />
+            <Container type={"important"}/>
+          </Route>
+        
+          <Route path="/checked">
+            <NavBar />
+            <Container type={"checked"}/>
+          </Route>
+
+          <Route path="/weather">
+            <NavBar />
+            <Weather />
+          </Route>
+
+          <Route path="/auth">
+            <Auth />
+          </Route>
+
+          <Route path="/registration">
+            <Registration />
+          </Route>
+
+          <Redirect to="/" />
+        </Switch>
+        <footer className={"autor"}>
+        <a 
+          className="autorLink" 
+          href="http://www.linkedin.com/in/nickmoskalev/" 
+          target="_blank"
+          rel="noreferrer"
+        >ⓒMoskalevNick</a>
+      </footer> 
+      </div>
+    </Router>
+  )
+}
+
+export default App
+>>>>>>> 5838a3fde47a05a2fe41db034bc2b0dc5085ba63

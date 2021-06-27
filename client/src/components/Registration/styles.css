@@ -3,8 +3,8 @@
 .registrContainer {
     width: 500px;
     margin: 0 auto;
-    margin-top: 100px;
-    min-height:  calc(100vh - 195px);
+    padding-top: 200px;
+    min-height:  calc(100vh - 225px);
     --ion-background-color: var(--base-color-header);
     --ion-item-color: var(--base-color-text);
 }
