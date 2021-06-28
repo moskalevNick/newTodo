@@ -5,6 +5,12 @@
   margin-bottom: 40px;
 } 
 
+.sc-ion-modal-md-h {
+  --width: 400px;
+  --height: 300px;
+  --border-radius: 5px;
+}
+
 .openedModal > .ion-color-danger{
   --ion-color-contrast: var(--base-color-text) !important;
 }   

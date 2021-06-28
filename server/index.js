@@ -13,14 +13,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    origin: process.env.CLIENT_URL
+    origin: 'http://localhost:3000'
 }));
 app.use('/api', router);
 app.use(errorMiddleware);
 
 const start = async () => {
     try {
-        await mongoose.connect(process.env.DB_URL, {
+        await mongoose.connect("mongodb+srv://keks:22101995Kolya@cluster0.o9t1k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
             useCreateIndex: true,
             useNewUrlParser: true,
             useUnifiedTopology: true,

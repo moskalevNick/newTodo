@@ -1,3 +1,5 @@
+@import "../../index.css";
+
 .navBar {
   display: grid;
   width: 100vw;
@@ -19,8 +21,13 @@
 } 
 
 .underline{
-  color:rgb(11, 134, 134);
+  color: var(--base-color-active);
   text-decoration: underline;
+}
+
+.userName{
+  
+  color: var(--base-color-text);
 }
 
 .containerButtonChangeTheme{

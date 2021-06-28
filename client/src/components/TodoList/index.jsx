@@ -3,6 +3,9 @@ import TodoItem from "../TodoItem"
 import "./styles.css"
 
 const TodoList = ( {todos, changeTodo, triggerModalDelete} ) => {
+  if (!todos){
+    return null
+  }
   return (
     <div className={"list"}>
         {todos.length === 0 && <p className={"noTodos"}>there are no todos yet <br/>(or they waiting from server)</p>}

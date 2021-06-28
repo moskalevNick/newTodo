@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux'
 import { login } from '../../redux/actions';
 
 const Auth = () => {
-  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [password, setPassword] = useState('')
  	const dispatch = useDispatch()
 
@@ -17,8 +17,8 @@ const Auth = () => {
           position="floating"
         >Username</IonLabel>
         <IonInput
-          onIonChange={e => setEmail(e.target.value) }
-          value={email}
+          onIonChange={e => setName(e.target.value) }
+          value={name}
           type="text"/>
       </IonItem>
       <IonItem>
@@ -34,7 +34,7 @@ const Auth = () => {
         className="ion-margin-top" 
         type="submit" 
         expand="block" 
-        onClick={() => dispatch(login(email, password)) }
+        onClick={() => dispatch(login(name, password)) }
       >Login
       </IonButton>
       <div className="noAcc">

@@ -4,14 +4,16 @@ body[color-theme="dark"] {
   --base-color-text: #dddddd;
   --base-color-modal: #2e203b;
   --base-color-nav:  #482369;
+  --base-color-active:  #000000;
 }
 
 body[color-theme="light"] {
-  --base-color-header: #eaecd4;
+  --base-color-header: #ffffff;
   --base-color-list: #85b7f8;
   --base-color-text: #000000;
   --base-color-modal: #94a7db;
-  --base-color-nav:  #55e2a0;
+  --base-color-nav:  #7796fd;
+  --base-color-active:  #ffffff;
 }
 
 body {

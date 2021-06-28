@@ -31,6 +31,9 @@ const Container = ({type="main"}) => {
   }, [dispatch])
 
   const currentTodos = useMemo(() => {
+    if (!todos){
+      return null
+    }
     if (type === "important") {
       return todos.data.filter((todo) => todo.important === true)  
     } else if (type === "checked") {

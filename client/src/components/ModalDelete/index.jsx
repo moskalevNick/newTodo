@@ -7,7 +7,7 @@ const ModalDelete = ({ isModalDeleteOpen, removeTodo, acceptTodo, setModalDelete
     <IonModal isOpen={isModalDeleteOpen} >
       <div className={"openedModal"}>
         <div className={"titleModal"}>
-          Are you sure, you wanna delete {acceptTodo._id ? `"${acceptTodo.todo}"` : "all checked todos"} ?
+          Are you sure, you wanna delete {acceptTodo._id ? `"${acceptTodo.title}"` : "all checked todos"} ?
         </div>
         <div className={"buttonsDelete"}>
           <IonButton 

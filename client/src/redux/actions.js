@@ -36,11 +36,7 @@ export const setTodos = () => {
 export const removeTodo = (id) => async dispatch => {
   try{
     await TodoService.removeTodo(id)
-    const data = await AuthService.getTodos()
-    dispatch({
-      type : SET_TODOS,
-      payload : data
-    }); 
+    dispatch(setTodos())
   } catch (e) {
     console.log(e.response?.data?.message);
   }
@@ -49,11 +45,7 @@ export const removeTodo = (id) => async dispatch => {
 export const addTodo = ( title ) => async dispatch => {
   try{
     await TodoService.addTodo(title);
-    const data = await AuthService.getTodos();
-    dispatch({
-      type : SET_TODOS,
-      payload : data
-  	}); 
+    dispatch(setTodos())
   } catch (e) {
     console.log(e.response?.data?.message);
   }
@@ -62,11 +54,7 @@ export const addTodo = ( title ) => async dispatch => {
 export const changeTodo = (id, type) => async dispatch => {
 	try{
     await TodoService.changeTodo(id, type); 
-    const data = await AuthService.getTodos();
-      dispatch({
-        type : SET_TODOS,
-        payload : data
-      });   
+    dispatch(setTodos())  
 	} catch (e) {
     console.log(e.response?.data?.message);
   }
@@ -74,12 +62,8 @@ export const changeTodo = (id, type) => async dispatch => {
 
 export const removeAllChecked = () => async dispatch => {
 	try{
-    await TodoService.removeAllChecked()	
-		const data = await AuthService.getTodos()
-    dispatch({
-      type : SET_TODOS,
-      payload : data
-    }); 
+    await TodoService.removeAllChecked()
+    dispatch(setTodos())
 	}catch (e){
     console.log(e.response?.data?.message);
   }
@@ -91,7 +75,7 @@ export const fetchData = (city) => async dispatch => {
     const responce = await fetch(weatherURL)
     const data = await responce.json()
     if ( data.cod === '404' ) {
-      
+      console.log('error 404');
     }
     dispatch({
       type : SET_WEATHER,
@@ -102,9 +86,9 @@ export const fetchData = (city) => async dispatch => {
   }  
 }
 
-export const login = (email, password) => async dispatch => {
+export const login = (name, password) => async dispatch => {
   try {
-      const response = await AuthService.login(email, password);
+      const response = await AuthService.login(name, password);
       localStorage.setItem('token', response.data.accessToken);
       dispatch(setAuth(true))
       dispatch(setUser(response.data.user))
@@ -113,9 +97,9 @@ export const login = (email, password) => async dispatch => {
   }
 }
 
-export const registration = (email, password) => async dispatch => {
+export const registration = (email, password, name) => async dispatch => {
   try {
-      const response = await AuthService.registration(email, password);
+      const response = await AuthService.registration(email, password, name);
       localStorage.setItem('token', response.data.accessToken);
       dispatch(setAuth(true))
       dispatch(setUser(response.data.user))

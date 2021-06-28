@@ -4,21 +4,24 @@ class MailService {
 
     constructor() {
         this.transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: process.env.SMTP_PORT,
+            host: 'smtp.gmail.com',
+            port: 587,
             secure: false,
             auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD
+                user: 'moskalevnikolay1@gmail.com',
+                pass: 'uuadvvpkkpsvgobo'
+            },
+            tls: {
+                rejectUnauthorized: false
             }
         })
     }
 
     async sendActivationMail(to, link) {
         await this.transporter.sendMail({
-            from: process.env.SMTP_USER,
+            from: 'moskalevnikolay1@gmail.com',
             to,
-            subject: 'Активация аккаунта на ' + process.env.API_URL,
+            subject: 'Активация аккаунта на todoService',
             text: '',
             html:
                 `

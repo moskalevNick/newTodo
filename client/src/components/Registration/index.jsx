@@ -8,15 +8,17 @@ const Registration = () => {
 	const [inputEmailValue, setInputEmailValue] = useState("")
 	const [inputPasswordValue, setInputPasswordValue] = useState("")
 	const [inputReplacePasswordValue, setInputReplacePasswordValue] = useState("")
+	const [inputNameValue, setInputNameValue] = useState("")
  
   const dispatch = useDispatch()
  
   const cardOfUser = () => {
     if(inputPasswordValue === inputReplacePasswordValue){
-      dispatch(registration( { email: inputEmailValue, password: inputPasswordValue } ))
+      dispatch(registration( { email: inputEmailValue, password: inputPasswordValue, name: inputNameValue } ))
       setInputEmailValue('')
       setInputPasswordValue('')
       setInputReplacePasswordValue('')
+      setInputNameValue('')
       console.log('registration successful');      
     }else{
       console.log('Password mismatch');      
@@ -33,6 +35,15 @@ const Registration = () => {
           value={inputEmailValue} 
           onIonChange={(e) => {
             setInputEmailValue(e.target.value)
+          }} 
+        />
+      </IonItem>
+      <IonItem >
+        <IonLabel className="ionItem" position="floating">Name</IonLabel>
+        <IonInput 
+          value={inputNameValue} 
+          onIonChange={(e) => {
+            setInputNameValue(e.target.value)
           }} 
         />
       </IonItem>

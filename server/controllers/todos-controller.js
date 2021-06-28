@@ -1,16 +1,15 @@
-//const {validationResult} = require('express-validator');
 const ApiError = require('../exceptions/api-error');
 const todoService = require('../service/todo-service');
 
 class TodosController {
-    async getTodos(req, res, next) {
-        try {
-            const todos = await todoService.getTodosByUserId( req.user.id )
-            res.json(todos)
-        } catch (e) {
-            next(e);
-        }
+  async getTodos(req, res, next) {
+    try {
+        const todos = await todoService.getTodosByUserId( req.user.id )
+        res.json(todos)
+    } catch (e) {
+        next(e);
     }
+  }
 
     async createTodo(req, res, next) {
         try {

@@ -50,7 +50,7 @@ const NavBar = () => {
             Weather
           </NavLink>
         </div>
-        <p>{user.email}</p>
+        <p className="userName">{user.name}</p>
         <div className="containerButtonChangeTheme">
           <NavLink to='/auth' className="buttonAuth" onClick={() => dispatch(logout())}>
           <FontAwesomeIcon 
